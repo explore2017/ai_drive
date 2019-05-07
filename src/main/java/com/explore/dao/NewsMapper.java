@@ -2,6 +2,8 @@ package com.explore.dao;
 
 import com.explore.pojo.News;
 
+import java.util.List;
+
 public interface NewsMapper {
     int deleteByPrimaryKey(Long id);
 
@@ -16,4 +18,6 @@ public interface NewsMapper {
     int updateByPrimaryKeyWithBLOBs(News record);
 
     int updateByPrimaryKey(News record);
+
+    List<News> searchAllNews();
 }

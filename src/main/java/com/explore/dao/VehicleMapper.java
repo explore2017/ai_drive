@@ -2,6 +2,8 @@ package com.explore.dao;
 
 import com.explore.pojo.Vehicle;
 
+import java.util.List;
+
 public interface VehicleMapper {
     int deleteByPrimaryKey(Integer id);
 
@@ -14,4 +16,8 @@ public interface VehicleMapper {
     int updateByPrimaryKeySelective(Vehicle record);
 
     int updateByPrimaryKey(Vehicle record);
+
+    List<Vehicle> searchVehiclesCampus(Integer compusId);
+
+    List<Vehicle> showVehicles();
 }

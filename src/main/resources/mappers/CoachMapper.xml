@@ -20,6 +20,17 @@
     from coach
     where id = #{id,jdbcType=INTEGER}
   </select>
+  <select id="getAllCoach" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select
+    <include refid="Base_Column_List" />
+    from coach
+  </select>
+  <select id="searchCoachesCampus" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select
+    <include refid="Base_Column_List" />
+    from coach
+    where campus_id =  #{campusId,jdbcType=INTEGER}
+  </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from coach
     where id = #{id,jdbcType=INTEGER}

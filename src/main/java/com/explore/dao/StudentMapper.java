@@ -1,6 +1,9 @@
 package com.explore.dao;
 
+import com.explore.pojo.Exam;
 import com.explore.pojo.Student;
+
+import java.util.List;
 
 public interface StudentMapper {
     int deleteByPrimaryKey(Integer id);
@@ -14,4 +17,16 @@ public interface StudentMapper {
     int updateByPrimaryKeySelective(Student record);
 
     int updateByPrimaryKey(Student record);
+
+    List<Student> showStudent(Integer coachId);
+
+    List<Exam> searchSubjectStudent(Integer coachId);
+
+    List<Student> getAllStudent();
+
+    Student getiIdCard(String idcard);
+
+    Student showMessage(String name, String idcard);
+
+    List<Student> searchStudentCampus(Integer campusId);
 }

@@ -23,9 +23,9 @@ public interface IManageService {
 
     ServerResponse<List<Coach>> Coachs();
 
-    ServerResponse addCoach(Coach teacher, String[] subjectId);
+    ServerResponse addCoach(Coach coach);
 
     ServerResponse outCoach(Integer id);
 
-    ServerResponse reviseCoach(Coach teacher, String[] subjectId);
+    ServerResponse reviseCoach(Coach coach);
 }

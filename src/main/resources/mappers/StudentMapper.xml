@@ -20,6 +20,53 @@
     from student
     where id = #{id,jdbcType=INTEGER}
   </select>
+  <select id="getAllStudent" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from student
+  </select>
+  <select id="getiIdCard" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from student
+    where idcard = #{idcard,jdbcType=VARCHAR}
+  </select>
+  <select id="showMessage" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from student
+    where name = #{name,jdbcType=VARCHAR} and  idcard = #{idcard,jdbcType=VARCHAR}
+  </select>
+  <select id="showStudent" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select
+    <include refid="Base_Column_List" />
+    from student
+    where coach_id = #{coachId,jdbcType=INTEGER} and status = 0
+  </select>
+  <select id="searchStudentCampus" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select
+    <include refid="Base_Column_List" />
+    from student
+    where campus_id = #{campusId,jdbcType=INTEGER}
+  </select>
+  <select id="searchSubjectStudent" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+SELECT
+student.`name`,
+`subject`.subject_name,
+`subject`.price,
+subject_student.`status`,
+subject_student.position,
+subject_student.start_time,
+subject_student.end_time
+FROM
+subject_student ,
+`subject` ,
+student
+WHERE
+student.coach_id = #{coachId,jdbcType=INTEGER} AND
+subject_student.student_id = student.id AND
+subject_student.subject_id = `subject`.id
+  </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from student
     where id = #{id,jdbcType=INTEGER}
