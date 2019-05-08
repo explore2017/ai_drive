@@ -43,8 +43,8 @@ public class CoachServiceImpl implements ICoachService {
     }
 
     @Override
-    public ServerResponse<List<Exam>> searchSubjectStudent(Integer coachId) {
-        List<Exam> exams = studentMapper.searchSubjectStudent(coachId);
-        return ServerResponse.createBySuccess(exams);
+    public ServerResponse<List<SubjectStudent>> searchSubjectStudent(Integer coachId) {
+        List<SubjectStudent> subjectStudents = studentMapper.searchSubjectStudent(coachId);
+        return ServerResponse.createBySuccess(subjectStudents);
     }
 }

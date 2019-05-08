@@ -21,4 +21,28 @@ public class NewsServicelmpl implements INewsService {
         List<News> news = newsMapper.searchAllNews();
         return ServerResponse.createBySuccess(news);
     }
+
+    @Override
+    public ServerResponse addNews(News news) {
+        int count = newsMapper.insertSelective(news);
+        if(count==1)
+            return ServerResponse.createBySuccessMessage("增加新闻成功");
+        return ServerResponse.createByErrorMessage("增加新闻失败");
+    }
+
+    @Override
+    public ServerResponse reviseNews(News news) {
+        int count = newsMapper.updateByPrimaryKeySelective(news);
+        if(count==1)
+            return ServerResponse.createBySuccessMessage("修改新闻成功");
+        return ServerResponse.createByErrorMessage("修改新闻失败");
+    }
+
+    @Override
+    public ServerResponse deleteNews(Integer id) {
+        int count = newsMapper.deleteByPrimaryKey((long)id);
+        if(count==1)
+            return ServerResponse.createBySuccessMessage("删除成功");
+        return ServerResponse.createByErrorMessage("删除失败");
+    }
 }

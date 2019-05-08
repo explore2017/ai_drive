@@ -27,4 +27,34 @@ public class NewsController {
         ServerResponse<List<News>> serverResponse = newsService.searchAllNews();
         return  serverResponse;
     }
+
+    /**
+     * 添加新闻
+     * @return
+     */
+    @PostMapping("/addNews")
+    public ServerResponse addNews(@RequestBody News news) {
+        ServerResponse serverResponse = newsService.addNews(news);
+        return serverResponse;
+    }
+
+    /**
+     * 修改新闻
+     * @return
+     */
+    @PutMapping("/reviseNews")
+    public ServerResponse reviseNews(News news) {
+        ServerResponse serverResponse = newsService.reviseNews(news);
+        return serverResponse;
+    }
+
+    /**
+     * 删除资源
+     * @return
+     */
+    @DeleteMapping("/deleteNews/{id}")
+    public ServerResponse deleteNews(@PathVariable("id") Integer id) {
+        ServerResponse serverResponse =newsService.deleteNews(id);
+        return serverResponse;
+    }
 }

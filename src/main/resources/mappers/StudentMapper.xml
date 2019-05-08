@@ -51,21 +51,23 @@
   </select>
   <select id="searchSubjectStudent" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
 SELECT
-student.`name`,
-`subject`.subject_name,
-`subject`.price,
+subject_student.id,
+subject_student.subject_id,
+subject_student.student_id,
+subject_student.exam_id,
 subject_student.`status`,
+subject_student.count,
 subject_student.position,
+subject_student.price,
 subject_student.start_time,
 subject_student.end_time
 FROM
-subject_student ,
-`subject` ,
-student
+student ,
+subject_student
 WHERE
 student.coach_id = #{coachId,jdbcType=INTEGER} AND
 subject_student.student_id = student.id AND
-subject_student.subject_id = `subject`.id
+student.`status` = 0
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from student
