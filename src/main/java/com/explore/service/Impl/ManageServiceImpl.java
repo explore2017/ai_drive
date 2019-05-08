@@ -2,8 +2,11 @@ package com.explore.service.Impl;
 
 import com.explore.common.ServerResponse;
 import com.explore.dao.CoachMapper;
+import com.explore.dao.StaffMapper;
 import com.explore.dao.StudentMapper;
 import com.explore.pojo.Coach;
+import com.explore.pojo.Manage;
+import com.explore.pojo.Staff;
 import com.explore.pojo.Student;
 import com.explore.service.IManageService;
 import org.apache.catalina.Manager;
@@ -20,15 +23,27 @@ public class ManageServiceImpl implements IManageService {
     StudentMapper studentMapper;
     @Autowired
     CoachMapper coachMapper;
+    @Autowired
+    StaffMapper staffMapper;
 
     @Override
-    public ServerResponse<Manager> login(String username, String password) {
-        return null;
+    public ServerResponse<Manager> login(String name, String password) {
+        Staff staff = staffMapper.login(name,password);
+        if(staff==null)
+            return ServerResponse.createByErrorMessage("登陆失败");
+        return ServerResponse.createBySuccessMessage("登陆成功");
     }
 
     @Override
-    public ServerResponse revise(String username, String oldPassword, String newPassword) {
-        return null;
+    public ServerResponse revise(String name, String oldPassword, String newPassword) {
+        Staff staff = staffMapper.login(name,oldPassword);
+        if(staff==null)
+            return ServerResponse.createByErrorMessage("密码输入错误");
+        staff.setPassword(newPassword);
+        int count = staffMapper.updateByPrimaryKeySelective(staff);
+        if(count==1)
+            return ServerResponse.createBySuccessMessage("修改成功");
+        return ServerResponse.createByErrorMessage("修改失败");
     }
 
     @Override

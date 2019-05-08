@@ -3,6 +3,7 @@ package com.explore.controller.manage;
 import com.explore.common.Const;
 import com.explore.common.ServerResponse;
 import com.explore.pojo.Coach;
+import com.explore.pojo.Manage;
 import com.explore.pojo.Student;
 import com.explore.service.IManageService;
 import org.apache.catalina.Manager;
@@ -23,11 +24,10 @@ public class ManageController {
      * 管理员登录
      */
     @PostMapping("/login")
-    public ServerResponse login(@RequestBody String username, String password, HttpSession session) {
-        ServerResponse<Manager> serverResponse = manageService.login(username, password);
+    public ServerResponse login(@RequestBody Manage manage, HttpSession session) {
+        ServerResponse serverResponse = manageService.login(manage.getName(),manage.getPassword());
         if (serverResponse.isSuccess()) {
-            Manager manager = serverResponse.getData();
-            session.setAttribute(Const.CURRENT_USER,manager);
+            session.setAttribute(Const.CURRENT_USER,manage);
         }
         return serverResponse;
     }
@@ -36,8 +36,8 @@ public class ManageController {
      * 管理员密码修改
      */
     @PutMapping("/password")
-    public ServerResponse revise(String username, String oldPassword, String newPassword) {
-        ServerResponse serverResponse = manageService.revise(username, oldPassword, newPassword);
+    public ServerResponse revise(String name, String oldPassword, String newPassword) {
+        ServerResponse serverResponse = manageService.revise(name, oldPassword, newPassword);
         return serverResponse;
     }
 
