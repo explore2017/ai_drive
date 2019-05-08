@@ -32,7 +32,7 @@ public class ManageServiceImpl implements IManageService {
     }
 
     @Override
-    public ServerResponse<List<Student>> Students() {
+    public ServerResponse Students() {
         return ServerResponse.createBySuccess(studentMapper.getAllStudent());
     }
 
@@ -69,7 +69,7 @@ public class ManageServiceImpl implements IManageService {
     }
 
     @Override
-    public ServerResponse<List<Coach>> Coachs() {
+    public ServerResponse Coachs() {
         return ServerResponse.createBySuccess(coachMapper.getAllCoach());
     }
 

@@ -10,9 +10,9 @@ import java.util.List;
 
 public interface IStudentService {
 
-    ServerResponse<Student> showMessage(String name, String idcard);
+    ServerResponse showMessage(String name, String idcard);
 
-    ServerResponse<List<SubjectStudent>> showExam(Integer studentId);
+    ServerResponse showExam(Integer studentId);
 
     ServerResponse addCoach(Student student, Coach coach);
 

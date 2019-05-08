@@ -13,7 +13,7 @@ public interface IManageService {
 
     ServerResponse revise(String username, String oldPassword, String newPassword);
 
-    ServerResponse<List<Student>> Students();
+    ServerResponse Students();
 
     ServerResponse addStudent(Student student);
 
@@ -21,7 +21,7 @@ public interface IManageService {
 
     ServerResponse reviseStudent(Student student);
 
-    ServerResponse<List<Coach>> Coachs();
+    ServerResponse Coachs();
 
     ServerResponse addCoach(Coach coach);
 

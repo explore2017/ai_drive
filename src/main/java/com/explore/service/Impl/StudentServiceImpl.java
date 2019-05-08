@@ -23,7 +23,7 @@ public class StudentServiceImpl implements IStudentService {
     SubjectStudentMapper subjectStudentMapper;
 
     @Override
-    public ServerResponse<Student> showMessage(String name, String idcard) {
+    public ServerResponse showMessage(String name, String idcard) {
         Student student = studentMapper.showMessage(name,idcard);
         if(student==null)
             return ServerResponse.createByErrorMessage("没有此人");
@@ -31,7 +31,7 @@ public class StudentServiceImpl implements IStudentService {
     }
 
     @Override
-    public ServerResponse<List<SubjectStudent>> showExam(Integer studentId) {
+    public ServerResponse showExam(Integer studentId) {
         List<SubjectStudent> subjectStudents = subjectStudentMapper.showExamStudent(studentId);
         return ServerResponse.createBySuccess(subjectStudents);
     }

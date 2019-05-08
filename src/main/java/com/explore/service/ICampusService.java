@@ -7,13 +7,13 @@ import java.util.List;
 
 public interface ICampusService {
 
-    ServerResponse<List<Student>> searchStudents(Campus campus);
+    ServerResponse searchStudents(Campus campus);
 
-    ServerResponse<List<Coach>> searchCoaches(Campus campus);
+    ServerResponse searchCoaches(Campus campus);
 
-    ServerResponse<List<Vehicle>> searchVehicles(Campus campus);
+    ServerResponse searchVehicles(Campus campus);
 
-    ServerResponse<List<SubjectStudent>> searchExam(Campus campus);
+    ServerResponse searchExam(Campus campus);
 
     ServerResponse deleteCampus(Integer id);
 }

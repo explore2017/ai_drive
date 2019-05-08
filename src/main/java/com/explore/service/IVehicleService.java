@@ -9,7 +9,7 @@ public interface IVehicleService {
 
     ServerResponse addVehicle(Vehicle vehicle);
 
-    ServerResponse<List<Vehicle>> showVehicles();
+    ServerResponse showVehicles();
 
     ServerResponse reviseVehicle(Vehicle vehicle);
 

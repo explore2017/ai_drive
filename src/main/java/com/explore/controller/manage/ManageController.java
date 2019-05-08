@@ -45,14 +45,15 @@ public class ManageController {
      * 查看所有学生数据
      */
     @GetMapping("/students")
-    public ServerResponse<List<Student>> getAllStudent(){
-        ServerResponse<List<Student>> serverResponse=manageService.Students();
+    public ServerResponse getAllStudent(){
+        ServerResponse serverResponse=manageService.Students();
         return serverResponse;
     }
 
 
     /**
      * 学生添加
+     *  @param student
      */
     @PostMapping("/insertStudent")
     public ServerResponse addStudent(@RequestBody Student student) {
@@ -61,6 +62,7 @@ public class ManageController {
     }
 
     /**
+     * @param id
      * 学生删除
      */
     @DeleteMapping("/deleteStudent/{id}")
@@ -70,10 +72,11 @@ public class ManageController {
     }
 
     /**
+     * @param student
      * 修改学生信息
      */
     @PutMapping("/reviseStudent")
-    public ServerResponse reviseStudent(@RequestBody Student student) {
+    public ServerResponse reviseStudent(Student student) {
         ServerResponse serverResponse = manageService.reviseStudent(student);
         return serverResponse;
     }
@@ -82,12 +85,13 @@ public class ManageController {
      * 查看所有教练数据
      */
     @GetMapping("/Coaches")
-    public ServerResponse<List<Coach>> getAllCoach(){
-        ServerResponse<List<Coach>> serverResponse=manageService.Coachs();
+    public ServerResponse getAllCoach(){
+        ServerResponse serverResponse=manageService.Coachs();
         return serverResponse;
     }
 
     /**
+     * @param coach
      * 教练添加
      */
     @PostMapping("/insertTeacher")

@@ -19,8 +19,8 @@ public class StudentController {
      * @return
      */
     @PostMapping("/show")
-    public ServerResponse<Student> showMessage(String name,String idcard) {
-        ServerResponse<Student> serverResponse = studentService.showMessage(name,idcard);
+    public ServerResponse showMessage(String name,String idcard) {
+        ServerResponse serverResponse = studentService.showMessage(name,idcard);
         return serverResponse;
     }
 
@@ -30,7 +30,7 @@ public class StudentController {
      * @return
      */
     @GetMapping("/showExams")
-    public ServerResponse<List<SubjectStudent>> showExams(Student student) {
+    public ServerResponse showExams(Student student) {
         ServerResponse<List<SubjectStudent>> serverResponse = studentService.showExam(student.getId());
         return serverResponse;
     }
@@ -68,7 +68,7 @@ public class StudentController {
     @PostMapping("/addSubjectStudent")
     public ServerResponse addSubjectStudent(@RequestBody Student student, SubjectStudent subjectStudent) {
         ServerResponse serverResponse = studentService.addSubjectStudent(student,subjectStudent);
-        return ServerResponse.createBySuccessMessage("success");
+        return serverResponse;
     }
 
 }

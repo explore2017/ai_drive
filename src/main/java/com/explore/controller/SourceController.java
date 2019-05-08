@@ -34,8 +34,8 @@ public class SourceController {
      * @return
      */
     @GetMapping("/showSources")
-    public ServerResponse<List<Source>> showSources() {
-        ServerResponse<List<Source>> serverResponse = sourceService.showSources();
+    public ServerResponse showSources() {
+        ServerResponse serverResponse = sourceService.showSources();
         return serverResponse;
     }
 

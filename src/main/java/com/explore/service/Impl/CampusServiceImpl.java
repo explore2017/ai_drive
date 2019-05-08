@@ -7,6 +7,8 @@ import com.explore.service.ICampusService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 @Service
@@ -22,29 +24,41 @@ public class CampusServiceImpl implements ICampusService {
     SubjectStudentMapper subjectStudentMapper;
     @Autowired
     CampusMapper campusMapper;
+    @Autowired
+    SubjectMapper subjectMapper;
 
     @Override
-    public ServerResponse<List<Student>> searchStudents(Campus campus) {
+    public ServerResponse searchStudents(Campus campus) {
         List<Student> students = studentMapper.searchStudentCampus(campus.getId());
         return ServerResponse.createBySuccess(students);
     }
 
     @Override
-    public ServerResponse<List<Coach>> searchCoaches(Campus campus) {
+    public ServerResponse searchCoaches(Campus campus) {
         List<Coach> coaches = coachMapper.searchCoachesCampus(campus.getId());
         return ServerResponse.createBySuccess(coaches);
     }
 
     @Override
-    public ServerResponse<List<Vehicle>> searchVehicles(Campus campus) {
+    public ServerResponse searchVehicles(Campus campus) {
         List<Vehicle> vehicles = vehicleMapper.searchVehiclesCampus(campus.getId());
         return ServerResponse.createBySuccess(vehicles);
     }
 
     @Override
-    public ServerResponse<List<SubjectStudent>> searchExam(Campus campus) {
+    public ServerResponse searchExam(Campus campus) {
+        List<HashMap<String,Object>>  allData=new ArrayList<>();
         List<SubjectStudent> subjectStudents = subjectStudentMapper.searchExam(campus.getId());
-        return ServerResponse.createBySuccess(subjectStudents);
+        for(int i =0;i<subjectStudents.size();i++){
+            Student student = studentMapper.selectByPrimaryKey(subjectStudents.get(i).getStudentId());
+            Subject subject = subjectMapper.selectByPrimaryKey(subjectStudents.get(i).getSubjectId());
+            HashMap<String,Object> data=new HashMap<>();
+            data.put("name",student.getName());
+            data.put("subjectStudent",subjectStudents.get(i));
+            data.put("subject",subject);
+            allData.add(data);
+        }
+        return ServerResponse.createBySuccess(allData);
     }
 
     @Override

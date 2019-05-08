@@ -23,8 +23,8 @@ public class CampusController {
      * @return
      */
     @GetMapping("/searchStudents")
-    public ServerResponse<List<Student>> searchStudents(Campus campus) {
-        ServerResponse<List<Student>> serverResponse = campusService.searchStudents(campus);
+    public ServerResponse searchStudents(Campus campus) {
+        ServerResponse serverResponse = campusService.searchStudents(campus);
         return serverResponse;
     }
 
@@ -34,8 +34,8 @@ public class CampusController {
      * @return
      */
     @GetMapping("/searchCoaches")
-    public ServerResponse<List<Coach>> searchCoaches(Campus campus) {
-        ServerResponse<List<Coach>> serverResponse = campusService.searchCoaches(campus);
+    public ServerResponse searchCoaches(Campus campus) {
+        ServerResponse serverResponse = campusService.searchCoaches(campus);
         return serverResponse;
     }
 
@@ -45,8 +45,8 @@ public class CampusController {
      * @return
      */
     @GetMapping("/searchVehicles")
-    public ServerResponse<List<Vehicle>> searchVehicles(Campus campus) {
-        ServerResponse<List<Vehicle>> serverResponse = campusService.searchVehicles(campus);
+    public ServerResponse searchVehicles(Campus campus) {
+        ServerResponse serverResponse = campusService.searchVehicles(campus);
         return serverResponse;
     }
 
@@ -56,8 +56,8 @@ public class CampusController {
      * @return
      */
     @GetMapping("/searchExam")
-    public ServerResponse<List<SubjectStudent>> searchExam(Campus campus) {
-        ServerResponse<List<SubjectStudent>> serverResponse = campusService.searchExam(campus);
+    public ServerResponse searchExam(Campus campus) {
+        ServerResponse serverResponse = campusService.searchExam(campus);
         return ServerResponse.createBySuccessMessage("success");
     }
 

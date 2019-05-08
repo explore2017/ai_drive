@@ -22,8 +22,8 @@ public class CoachController {
      * @return
      */
     @GetMapping("/showStudents")
-    public ServerResponse<List<Student>> showStudents(Coach coach) {
-        ServerResponse<List<Student>> serverResponse = coachService.showStudent(coach.getId());
+    public ServerResponse showStudents(Coach coach) {
+        ServerResponse serverResponse = coachService.showStudent(coach.getId());
         return serverResponse;
     }
 
@@ -45,8 +45,8 @@ public class CoachController {
      * @return
      */
     @GetMapping("/searchSubjectStudent")
-    public ServerResponse<List<SubjectStudent>> searchExam(Coach coach) {
-        ServerResponse<List<SubjectStudent>> serverResponse = coachService.searchSubjectStudent(coach.getId());
+    public ServerResponse searchExam(Coach coach) {
+        ServerResponse serverResponse = coachService.searchSubjectStudent(coach.getId());
         return serverResponse;
     }
 

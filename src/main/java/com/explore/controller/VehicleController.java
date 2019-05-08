@@ -32,8 +32,8 @@ public class VehicleController {
      * @return
      */
     @GetMapping("/showVehicles")
-    public ServerResponse<List<Vehicle>> showVehicles() {
-        ServerResponse<List<Vehicle>> serverResponse = vehicleService.showVehicles();
+    public ServerResponse showVehicles() {
+        ServerResponse serverResponse = vehicleService.showVehicles();
         return serverResponse;
     }
 

@@ -9,7 +9,7 @@ public interface ISourceService {
 
     ServerResponse addSource(Source source);
 
-    ServerResponse<List<Source>> showSources();
+    ServerResponse showSources();
 
     ServerResponse reviseSource(Source source);
 

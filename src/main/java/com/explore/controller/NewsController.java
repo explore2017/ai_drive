@@ -22,9 +22,9 @@ public class NewsController {
      * @return
      */
     @GetMapping("/searchAllNews")
-    public ServerResponse<List<News>> searchAllNews()
+    public ServerResponse searchAllNews()
     {
-        ServerResponse<List<News>> serverResponse = newsService.searchAllNews();
+        ServerResponse serverResponse = newsService.searchAllNews();
         return  serverResponse;
     }
 

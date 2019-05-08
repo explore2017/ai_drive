@@ -26,7 +26,7 @@ public class SourceServiceImpl implements ISourceService {
     }
 
     @Override
-    public ServerResponse<List<Source>> showSources() {
+    public ServerResponse showSources() {
         return ServerResponse.createBySuccess(sourceMapper.showSources());
     }
 

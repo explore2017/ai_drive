@@ -6,7 +6,7 @@ import com.explore.pojo.News;
 import java.util.List;
 
 public interface INewsService {
-    ServerResponse<List<News>> searchAllNews();
+    ServerResponse searchAllNews();
 
     ServerResponse addNews(News news);
 

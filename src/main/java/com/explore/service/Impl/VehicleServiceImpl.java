@@ -25,7 +25,7 @@ public class VehicleServiceImpl implements IVehicleService {
     }
 
     @Override
-    public ServerResponse<List<Vehicle>> showVehicles() {
+    public ServerResponse showVehicles() {
         List<Vehicle> vehicles = vehicleMapper.showVehicles();
         return ServerResponse.createBySuccess(vehicles);
     }

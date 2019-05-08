@@ -11,9 +11,9 @@ import java.util.List;
 
 public interface ICoachService {
 
-    ServerResponse<List<Student>> showStudent(Integer coachId);
+    ServerResponse showStudent(Integer coachId);
 
     ServerResponse reviseCampus(Coach coach);
 
-    ServerResponse<List<SubjectStudent>> searchSubjectStudent(Integer coachId);
+    ServerResponse searchSubjectStudent(Integer coachId);
 }
