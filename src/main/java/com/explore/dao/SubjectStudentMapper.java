@@ -2,6 +2,8 @@ package com.explore.dao;
 
 import com.explore.pojo.SubjectStudent;
 
+import java.util.List;
+
 public interface SubjectStudentMapper {
     int deleteByPrimaryKey(Integer id);
 

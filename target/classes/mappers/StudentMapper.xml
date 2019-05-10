@@ -125,4 +125,9 @@
       status = #{status,jdbcType=INTEGER}
     where id = #{id,jdbcType=INTEGER}
   </update>
+
+  <select id="checkStudent" resultType="java.lang.Integer" parameterType="com.explore.pojo.Student">
+    select count(*) from student
+    where phone = #{phone} and idcard =#{idcard}
+  </select>
 </mapper>

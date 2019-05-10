@@ -5,6 +5,7 @@ import com.explore.common.ServerResponse;
 import com.explore.pojo.Coach;
 import com.explore.pojo.Student;
 import com.explore.service.IManageService;
+import com.explore.service.ISubjectStudentService;
 import org.apache.catalina.Manager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -18,6 +19,8 @@ public class ManageController {
 
     @Autowired
     IManageService manageService;
+    @Autowired
+    ISubjectStudentService subjectStudentService;
 
     /**
      * 管理员登录
@@ -75,6 +78,42 @@ public class ManageController {
     @PutMapping("/reviseStudent")
     public ServerResponse reviseStudent(@RequestBody Student student) {
         ServerResponse serverResponse = manageService.reviseStudent(student);
+        return serverResponse;
+    }
+
+    /**
+     * 展示所有学员考试信息
+     */
+    @PostMapping("/showSubjectStudent")
+    public ServerResponse showSubjectStudent() {
+        ServerResponse serverResponse = subjectStudentService.showSubjectStudent();
+        return serverResponse;
+    }
+
+    /**
+     * 修改单个学员考试信息
+     */
+    @PostMapping("/reviewSubjectStudent")
+    public ServerResponse reviewSubjectStudent(int subjectId, int studentId) {
+        ServerResponse serverResponse = subjectStudentService.reviewSubjectStudent(subjectId, studentId);
+        return serverResponse;
+    }
+
+    /**
+     * 同意单个学员考试信息录入
+     */
+    @PostMapping("/acceptSubjectStudent")
+    public ServerResponse acceptSubjectStudent(int subjectId, int studentId) {
+        ServerResponse serverResponse = subjectStudentService.acceptSubjectStudent(subjectId, studentId);
+        return serverResponse;
+    }
+
+    /**
+     * 确认单个学员考试通过
+     */
+    @PostMapping("/passSubjectStudent")
+    public ServerResponse passSubjectStudent(int subjectId, int studentId) {
+        ServerResponse serverResponse = subjectStudentService.passSubjectStudent(subjectId, studentId);
         return serverResponse;
     }
 

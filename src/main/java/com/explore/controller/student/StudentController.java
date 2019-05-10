@@ -1,12 +1,21 @@
 package com.explore.controller.student;
 
 import com.explore.common.ServerResponse;
+import com.explore.dao.SubjectStudentMapper;
+import com.explore.form.AddSubjectStudent;
 import com.explore.pojo.*;
+import com.explore.service.ISubjectStudentService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.Date;
 
 @RestController
 @RequestMapping("/student")
 public class StudentController {
+
+    @Autowired
+    ISubjectStudentService subjectStudentService;
 
     /**
      * 展现该学员个人信息(包含是否拿到驾照)
@@ -69,14 +78,20 @@ public class StudentController {
 
     /**
      * 学员提交考试信息
-     * @param student
-     * @param subjectStudent
+     * @param addSubjectStudent
      * @return
      */
     @PostMapping("/addSubjectStudent")
-    public ServerResponse addSubjectStudent(@RequestBody Student student, SubjectStudent subjectStudent) {
+//    public ServerResponse addSubjectStudent(SubjectStudent subjectStudent, String phone, String idcard) {
+    public ServerResponse addSubjectStudent(@RequestBody AddSubjectStudent addSubjectStudent) {
+        ServerResponse serverResponse = subjectStudentService.addSubjectStudent(addSubjectStudent);
+        return serverResponse;
+    }
 
-        return ServerResponse.createBySuccessMessage("success");
+    @PostMapping("/addSubjectStudent2")
+    public ServerResponse tt (String phone, String idcard, String position, Date date) {
+
+        return ServerResponse.createBySuccess();
     }
 
     /**
