@@ -16,4 +16,8 @@ public interface SubjectStudentMapper {
     int updateByPrimaryKeySelective(SubjectStudent record);
 
     int updateByPrimaryKey(SubjectStudent record);
+
+    List<SubjectStudent> showExamStudent(Integer studentId);
+
+    List<SubjectStudent> searchExam(Integer campusId);
 }

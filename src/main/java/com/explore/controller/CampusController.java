@@ -2,18 +2,19 @@ package com.explore.controller;
 
 
 import com.explore.common.ServerResponse;
-import com.explore.pojo.Campus;
-import com.explore.pojo.SubjectStudent;
+import com.explore.pojo.*;
 import com.explore.service.ICampusService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/campus")
 public class CampusController {
 
     @Autowired
-    ICampusService CampusService;
+    ICampusService campusService;
 
 
     /**
@@ -21,10 +22,10 @@ public class CampusController {
      * @param campus
      * @return
      */
-    @PostMapping("/searchStudents")
-    public ServerResponse searchStudents(@RequestBody Campus campus) {
-
-        return ServerResponse.createBySuccessMessage("success");
+    @GetMapping("/searchStudents")
+    public ServerResponse searchStudents(Campus campus) {
+        ServerResponse serverResponse = campusService.searchStudents(campus);
+        return serverResponse;
     }
 
     /**
@@ -32,10 +33,10 @@ public class CampusController {
      * @param campus
      * @return
      */
-    @PostMapping("/searchCoachs")
-    public ServerResponse searchCoachs(@RequestBody Campus campus) {
-
-        return ServerResponse.createBySuccessMessage("success");
+    @GetMapping("/searchCoaches")
+    public ServerResponse searchCoaches(Campus campus) {
+        ServerResponse serverResponse = campusService.searchCoaches(campus);
+        return serverResponse;
     }
 
     /**
@@ -43,32 +44,30 @@ public class CampusController {
      * @param campus
      * @return
      */
-    @PostMapping("/searchVehicles")
-    public ServerResponse searchVehicles(@RequestBody Campus campus) {
-
-        return ServerResponse.createBySuccessMessage("success");
+    @GetMapping("/searchVehicles")
+    public ServerResponse searchVehicles(Campus campus) {
+        ServerResponse serverResponse = campusService.searchVehicles(campus);
+        return serverResponse;
     }
 
     /**
      * 查看该校区所有学员单次考试信息
      * @param campus
-     * @param subjectStudent
      * @return
      */
-    @PostMapping("/searchExam")
-    public ServerResponse searchSubjectStudent(@RequestBody Campus campus, SubjectStudent subjectStudent) {
-
+    @GetMapping("/searchExam")
+    public ServerResponse searchExam(Campus campus) {
+        ServerResponse serverResponse = campusService.searchExam(campus);
         return ServerResponse.createBySuccessMessage("success");
     }
 
     /**
      * 删除校区
-     * @param campus
      * @return
      */
-    @DeleteMapping("/deleteCampus")
-    public ServerResponse deleteCampus(Campus campus) {
-
-        return ServerResponse.createBySuccessMessage("success");
+    @DeleteMapping("/deleteCampus/{id}")
+    public ServerResponse deleteCampus(@PathVariable("id") Integer id) {
+        ServerResponse serverResponse = campusService.deleteCampus(id);
+        return serverResponse;
     }
 }

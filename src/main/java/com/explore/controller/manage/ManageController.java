@@ -3,6 +3,7 @@ package com.explore.controller.manage;
 import com.explore.common.Const;
 import com.explore.common.ServerResponse;
 import com.explore.pojo.Coach;
+import com.explore.pojo.Manage;
 import com.explore.pojo.Student;
 import com.explore.service.IManageService;
 import com.explore.service.ISubjectStudentService;
@@ -26,11 +27,10 @@ public class ManageController {
      * 管理员登录
      */
     @PostMapping("/login")
-    public ServerResponse login(@RequestBody String username, String password, HttpSession session) {
-        ServerResponse<Manager> serverResponse = manageService.login(username, password);
+    public ServerResponse login(@RequestBody Manage manage, HttpSession session) {
+        ServerResponse serverResponse = manageService.login(manage.getName(),manage.getPassword());
         if (serverResponse.isSuccess()) {
-            Manager manager = serverResponse.getData();
-            session.setAttribute(Const.CURRENT_USER,manager);
+            session.setAttribute(Const.CURRENT_USER,manage);
         }
         return serverResponse;
     }
@@ -39,8 +39,8 @@ public class ManageController {
      * 管理员密码修改
      */
     @PutMapping("/password")
-    public ServerResponse revise(String username, String oldPassword, String newPassword) {
-        ServerResponse serverResponse = manageService.revise(username, oldPassword, newPassword);
+    public ServerResponse revise(String name, String oldPassword, String newPassword) {
+        ServerResponse serverResponse = manageService.revise(name, oldPassword, newPassword);
         return serverResponse;
     }
 
@@ -48,14 +48,15 @@ public class ManageController {
      * 查看所有学生数据
      */
     @GetMapping("/students")
-    public ServerResponse<List<Student>> getAllStudent(Student student){
-        ServerResponse<List<Student>> serverResponse=manageService.Students();
+    public ServerResponse getAllStudent(){
+        ServerResponse serverResponse=manageService.Students();
         return serverResponse;
     }
 
 
     /**
      * 学生添加
+     *  @param student
      */
     @PostMapping("/insertStudent")
     public ServerResponse addStudent(@RequestBody Student student) {
@@ -64,6 +65,7 @@ public class ManageController {
     }
 
     /**
+     * @param id
      * 学生删除
      */
     @DeleteMapping("/deleteStudent/{id}")
@@ -73,10 +75,11 @@ public class ManageController {
     }
 
     /**
+     * @param student
      * 修改学生信息
      */
     @PutMapping("/reviseStudent")
-    public ServerResponse reviseStudent(@RequestBody Student student) {
+    public ServerResponse reviseStudent(Student student) {
         ServerResponse serverResponse = manageService.reviseStudent(student);
         return serverResponse;
     }
@@ -120,22 +123,22 @@ public class ManageController {
     /**
      * 查看所有教练数据
      */
-    @GetMapping("/Coachs")
-    public ServerResponse<List<Coach>> getAllStudent(Coach teacher){
-        ServerResponse<List<Coach>> serverResponse=manageService.Coachs();
+    @GetMapping("/Coaches")
+    public ServerResponse getAllCoach(){
+        ServerResponse serverResponse=manageService.Coachs();
         return serverResponse;
     }
 
     /**
+     * @param coach
      * 教练添加
      */
     @PostMapping("/insertTeacher")
-    public ServerResponse addTeacher(@RequestBody Coach teacher) {
-//        String[] subjectId=teacher.getSubjectId().split(",");
-//        ServerResponse serverResponse = manageService.addCoach(teacher,subjectId);
-//        return serverResponse;
-        return ServerResponse.createBySuccessMessage("success");
+    public ServerResponse addTeacher(@RequestBody Coach coach) {
+        ServerResponse serverResponse = manageService.addCoach(coach);
+        return serverResponse;
     }
+
 
     /**
      * 教练删除
@@ -150,11 +153,9 @@ public class ManageController {
      * 修改教练信息
      */
     @PutMapping("/reviseTeacher")
-    public ServerResponse reviseTeacher(@RequestBody Coach teacher) {
-//        String[] subjectId=teacher.getSubjectId().split(",");
-//        ServerResponse serverResponse = manageService.reviseCoach(teacher,subjectId);
-//        return serverResponse;
-        return ServerResponse.createBySuccessMessage("success");
+    public ServerResponse reviseTeacher( Coach coach) {
+        ServerResponse serverResponse = manageService.reviseCoach(coach);
+        return serverResponse;
     }
 
 }

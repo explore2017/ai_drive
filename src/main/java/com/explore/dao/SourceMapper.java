@@ -2,6 +2,8 @@ package com.explore.dao;
 
 import com.explore.pojo.Source;
 
+import java.util.List;
+
 public interface SourceMapper {
     int deleteByPrimaryKey(Integer id);
 
@@ -14,4 +16,6 @@ public interface SourceMapper {
     int updateByPrimaryKeySelective(Source record);
 
     int updateByPrimaryKey(Source record);
+
+    List<Source> showSources();
 }

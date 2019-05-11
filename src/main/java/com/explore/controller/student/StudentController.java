@@ -4,28 +4,37 @@ import com.explore.common.ServerResponse;
 import com.explore.dao.SubjectStudentMapper;
 import com.explore.form.AddSubjectStudent;
 import com.explore.pojo.*;
+<<<<<<< HEAD
 import com.explore.service.ISubjectStudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Date;
+=======
+import com.explore.service.IStudentService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+>>>>>>> c554e7846a6e71ad97f915f266fb3c769bd3d6c1
 
 @RestController
 @RequestMapping("/student")
 public class StudentController {
+    @Autowired
+    IStudentService studentService;
 
     @Autowired
     ISubjectStudentService subjectStudentService;
 
     /**
      * 展现该学员个人信息(包含是否拿到驾照)
-     * @param student
      * @return
      */
     @PostMapping("/show")
-    public ServerResponse showStudents(@RequestBody Student student) {
-
-        return ServerResponse.createBySuccessMessage("success");
+    public ServerResponse showMessage(String name,String idcard) {
+        ServerResponse serverResponse = studentService.showMessage(name,idcard);
+        return serverResponse;
     }
 
     /**
@@ -33,24 +42,12 @@ public class StudentController {
      * @param student
      * @return
      */
-    @PostMapping("/showExams")
-    public ServerResponse showExams(@RequestBody Student student) {
-
-        return ServerResponse.createBySuccessMessage("success");
+    @GetMapping("/showExams")
+    public ServerResponse showExams(Student student) {
+        ServerResponse<List<SubjectStudent>> serverResponse = studentService.showExam(student.getId());
+        return serverResponse;
     }
 
-    /**
-     * 学员加入校区
-     * @param student
-     * @param campus
-     * @return
-     */
-    @PostMapping("/addCampus")
-    public ServerResponse addCampus(@RequestBody Student student, Campus campus) {
-    // 考虑是否可以在归入教练时自动加入校区
-
-        return ServerResponse.createBySuccessMessage("success");
-    }
 
     /**
      * 学员归入某个教练
@@ -58,22 +55,21 @@ public class StudentController {
      * @param coach
      * @return
      */
-    @PostMapping("/addCoach")
-    public ServerResponse addCoach(@RequestBody Student student, Coach coach) {
-
-        return ServerResponse.createBySuccessMessage("success");
+    @PutMapping("/addCoach")
+    public ServerResponse addCoach(Student student, Coach coach) {
+        ServerResponse serverResponse = studentService.addCoach(student,coach);
+        return serverResponse;
     }
 
     /**
      * 修改学员所属校区
      * @param student
-     * @param campus
      * @return
      */
-    @PostMapping("/reviseCampus")
-    public ServerResponse reviseCampus(@RequestBody Student student, Campus campus) {
-
-        return ServerResponse.createBySuccessMessage("success");
+    @PutMapping("/reviseCampus")
+    public ServerResponse reviseCampus(Student student, int  campus_id) {
+        ServerResponse serverResponse = studentService.reviseCampus(student,campus_id);
+        return serverResponse;
     }
 
     /**
@@ -82,6 +78,7 @@ public class StudentController {
      * @return
      */
     @PostMapping("/addSubjectStudent")
+<<<<<<< HEAD
 //    public ServerResponse addSubjectStudent(SubjectStudent subjectStudent, String phone, String idcard) {
     public ServerResponse addSubjectStudent(@RequestBody AddSubjectStudent addSubjectStudent) {
         ServerResponse serverResponse = subjectStudentService.addSubjectStudent(addSubjectStudent);
@@ -92,17 +89,11 @@ public class StudentController {
     public ServerResponse tt (String phone, String idcard, String position, Date date) {
 
         return ServerResponse.createBySuccess();
+=======
+    public ServerResponse addSubjectStudent(@RequestBody Student student, SubjectStudent subjectStudent) {
+        ServerResponse serverResponse = studentService.addSubjectStudent(student,subjectStudent);
+        return serverResponse;
+>>>>>>> c554e7846a6e71ad97f915f266fb3c769bd3d6c1
     }
 
-    /**
-     * 退出某个教练教学
-     * @param student
-     * @param coach
-     * @return
-     */
-    @DeleteMapping("/deleteStudent")
-    public ServerResponse deleteStudent(Student student, Coach coach) {
-
-        return ServerResponse.createBySuccessMessage("success");
-    }
 }
