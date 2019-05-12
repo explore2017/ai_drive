@@ -17,6 +17,11 @@
     from campus
     where id = #{id,jdbcType=INTEGER}
   </select>
+  <select id="getAllCampus" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select
+    <include refid="Base_Column_List" />
+    from campus
+  </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from campus
     where id = #{id,jdbcType=INTEGER}

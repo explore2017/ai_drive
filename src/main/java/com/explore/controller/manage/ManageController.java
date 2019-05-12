@@ -158,6 +158,13 @@ public class ManageController {
         ServerResponse serverResponse = manageService.reviseCoach(coach);
         return serverResponse;
     }
+    /**
+     * 查看所有校区
+     */
 
-
+    @GetMapping("/showAllCampus")
+    public ServerResponse showAllCampus(){
+        ServerResponse serverResponse = manageService.showAllCampus();
+        return serverResponse;
+    }
 }

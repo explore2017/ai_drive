@@ -2,6 +2,8 @@ package com.explore.dao;
 
 import com.explore.pojo.Campus;
 
+import java.util.List;
+
 public interface CampusMapper {
     int deleteByPrimaryKey(Integer id);
 
@@ -14,4 +16,6 @@ public interface CampusMapper {
     int updateByPrimaryKeySelective(Campus record);
 
     int updateByPrimaryKey(Campus record);
+
+    List<Campus> getAllCampus();
 }

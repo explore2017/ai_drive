@@ -29,4 +29,6 @@ public interface IManageService {
     ServerResponse outCoach(Integer id);
 
     ServerResponse reviseCoach(Coach coach);
+
+    ServerResponse showAllCampus();
 }

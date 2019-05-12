@@ -139,4 +139,10 @@ public class ManageServiceImpl implements IManageService {
             return ServerResponse.createBySuccessMessage("教练修改成功");
         return ServerResponse.createByErrorMessage("教练修改失败");
     }
+
+    @Override
+    public ServerResponse showAllCampus() {
+        List<Campus> campuses = campusMapper.getAllCampus();
+        return ServerResponse.createBySuccess(campuses);
+    }
 }
