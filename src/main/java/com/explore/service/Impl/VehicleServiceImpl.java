@@ -2,19 +2,31 @@ package com.explore.service.Impl;
 
 
 import com.explore.common.ServerResponse;
+import com.explore.dao.CampusMapper;
+import com.explore.dao.CoachMapper;
+import com.explore.dao.StaffMapper;
 import com.explore.dao.VehicleMapper;
+import com.explore.pojo.Campus;
+import com.explore.pojo.Coach;
 import com.explore.pojo.Vehicle;
 import com.explore.service.IVehicleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class VehicleServiceImpl implements IVehicleService {
 
     @Autowired
     VehicleMapper vehicleMapper;
+    @Autowired
+    CoachMapper coachMapper;
+    @Autowired
+    CampusMapper campusMapper;
 
     @Override
     public ServerResponse addVehicle(Vehicle vehicle) {
@@ -26,8 +38,26 @@ public class VehicleServiceImpl implements IVehicleService {
 
     @Override
     public ServerResponse showVehicles() {
+        List<HashMap<String,Object>> allData=new ArrayList<>();
         List<Vehicle> vehicles = vehicleMapper.showVehicles();
-        return ServerResponse.createBySuccess(vehicles);
+        for(int i=0;i<vehicles.size();i++){
+            Campus campus = campusMapper.selectByPrimaryKey(vehicles.get(i).getCompusId());
+            Coach coach = coachMapper.selectByPrimaryKey(vehicles.get(i).getCoachId());
+            HashMap<String,Object> data=new HashMap<>();
+            data.put("vehicle",vehicles.get(i));
+            if(campus!=null){
+                data.put("campusName",campus.getName());
+            }else{
+                data.put("campusName","");
+            }
+            if(coach!=null){
+                data.put("coachName",coach.getName());
+            }else{
+                data.put("coachName","");
+            }
+            allData.add(data);
+        }
+        return ServerResponse.createBySuccess(allData);
     }
 
     @Override
