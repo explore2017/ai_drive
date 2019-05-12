@@ -98,7 +98,7 @@ public class ManageServiceImpl implements IManageService {
     }
 
     @Override
-    public ServerResponse Coachs() {
+    public ServerResponse Coaches() {
         List<HashMap<String,Object>> allData=new ArrayList<>();
         List<Coach> coaches= coachMapper.getAllCoach();
         for(int i=0;i<coaches.size();i++){

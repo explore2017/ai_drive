@@ -22,7 +22,7 @@ public interface IManageService {
 
     ServerResponse reviseStudent(Student student);
 
-    ServerResponse Coachs();
+    ServerResponse Coaches();
 
     ServerResponse addCoach(Coach coach);
 

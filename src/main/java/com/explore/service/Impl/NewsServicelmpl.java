@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import javax.xml.ws.Action;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
@@ -38,6 +39,8 @@ public class NewsServicelmpl implements INewsService {
 
     @Override
     public ServerResponse addNews(News news) {
+        Date creat_time = new Date();
+        news.setCreateTime(creat_time);
         int count = newsMapper.insertSelective(news);
         if(count==1)
             return ServerResponse.createBySuccessMessage("增加新闻成功");
@@ -46,6 +49,8 @@ public class NewsServicelmpl implements INewsService {
 
     @Override
     public ServerResponse reviseNews(News news) {
+        Date update_time = new Date();
+        news.setUpdateTime(update_time);
         int count = newsMapper.updateByPrimaryKeySelective(news);
         if(count==1)
             return ServerResponse.createBySuccessMessage("修改新闻成功");

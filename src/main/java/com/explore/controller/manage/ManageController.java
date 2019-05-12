@@ -126,7 +126,7 @@ public class ManageController {
      */
     @GetMapping("/Coaches")
     public ServerResponse getAllCoach(){
-        ServerResponse serverResponse=manageService.Coachs();
+        ServerResponse serverResponse=manageService.Coaches();
         return serverResponse;
     }
 
