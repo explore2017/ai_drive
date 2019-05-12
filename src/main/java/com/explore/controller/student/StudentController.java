@@ -4,19 +4,14 @@ import com.explore.common.ServerResponse;
 import com.explore.dao.SubjectStudentMapper;
 import com.explore.form.AddSubjectStudent;
 import com.explore.pojo.*;
-<<<<<<< HEAD
 import com.explore.service.ISubjectStudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Date;
-=======
 import com.explore.service.IStudentService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
->>>>>>> c554e7846a6e71ad97f915f266fb3c769bd3d6c1
 
 @RestController
 @RequestMapping("/student")
@@ -78,22 +73,15 @@ public class StudentController {
      * @return
      */
     @PostMapping("/addSubjectStudent")
-<<<<<<< HEAD
-//    public ServerResponse addSubjectStudent(SubjectStudent subjectStudent, String phone, String idcard) {
     public ServerResponse addSubjectStudent(@RequestBody AddSubjectStudent addSubjectStudent) {
         ServerResponse serverResponse = subjectStudentService.addSubjectStudent(addSubjectStudent);
         return serverResponse;
     }
 
     @PostMapping("/addSubjectStudent2")
-    public ServerResponse tt (String phone, String idcard, String position, Date date) {
-
-        return ServerResponse.createBySuccess();
-=======
     public ServerResponse addSubjectStudent(@RequestBody Student student, SubjectStudent subjectStudent) {
         ServerResponse serverResponse = studentService.addSubjectStudent(student,subjectStudent);
         return serverResponse;
->>>>>>> c554e7846a6e71ad97f915f266fb3c769bd3d6c1
     }
 
 }

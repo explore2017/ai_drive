@@ -1,9 +1,6 @@
-package com.explore.vo;
+package com.explore.dao;
 
 import com.explore.pojo.StudentExam;
-import com.explore.pojo.SubjectStudent;
-
-import java.util.List;
 
 public interface StudentExamMapper {
     int insert(StudentExam record);

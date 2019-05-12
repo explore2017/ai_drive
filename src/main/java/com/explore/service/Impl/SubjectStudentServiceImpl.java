@@ -6,13 +6,10 @@ import com.explore.dao.StudentMapper;
 import com.explore.dao.SubjectStudentMapper;
 import com.explore.form.AddSubjectStudent;
 import com.explore.pojo.SubjectStudent;
-import com.explore.service.IStudentService;
 import com.explore.service.ISubjectStudentService;
-import com.explore.vo.StudentExamMapper;
+import com.explore.dao.StudentExamMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
 
 @Service
 public class SubjectStudentServiceImpl implements ISubjectStudentService {
