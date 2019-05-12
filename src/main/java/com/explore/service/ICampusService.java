@@ -18,4 +18,6 @@ public interface ICampusService {
     ServerResponse deleteCampus(Integer id);
 
     ServerResponse addCampus(Campus campus);
+
+    ServerResponse reviseCampus(Campus campus);
 }

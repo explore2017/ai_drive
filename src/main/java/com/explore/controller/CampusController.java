@@ -28,6 +28,15 @@ public class CampusController {
     }
 
     /**
+     * 修改校区信息
+     */
+    @PutMapping("/reviseCampus")
+    public ServerResponse reviseCampus(Campus campus) {
+        ServerResponse serverResponse = campusService.reviseCampus(campus);
+        return serverResponse;
+    }
+
+    /**
      * 查看该校区所有学员基本信息
      * @param campus
      * @return

@@ -76,4 +76,12 @@ public class CampusServiceImpl implements ICampusService {
             return ServerResponse.createBySuccessMessage("增加成功");
         return ServerResponse.createByErrorMessage("增加失败");
     }
+
+    @Override
+    public ServerResponse reviseCampus(Campus campus) {
+        int count = campusMapper.updateByPrimaryKeySelective(campus);
+        if(count==1)
+            return ServerResponse.createBySuccessMessage("修改成功");
+        return ServerResponse.createByErrorMessage("修改失败");
+    }
 }
