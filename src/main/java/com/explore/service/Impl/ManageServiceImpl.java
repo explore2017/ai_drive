@@ -1,19 +1,19 @@
 package com.explore.service.Impl;
 
 import com.explore.common.ServerResponse;
+import com.explore.dao.CampusMapper;
 import com.explore.dao.CoachMapper;
 import com.explore.dao.StaffMapper;
 import com.explore.dao.StudentMapper;
-import com.explore.pojo.Coach;
-import com.explore.pojo.Manage;
-import com.explore.pojo.Staff;
-import com.explore.pojo.Student;
+import com.explore.pojo.*;
 import com.explore.service.IManageService;
 import org.apache.catalina.Manager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 
 @Service
@@ -25,6 +25,8 @@ public class ManageServiceImpl implements IManageService {
     CoachMapper coachMapper;
     @Autowired
     StaffMapper staffMapper;
+    @Autowired
+    CampusMapper campusMapper;
 
     @Override
     public ServerResponse<Staff> login(String name, String password) {
@@ -49,7 +51,18 @@ public class ManageServiceImpl implements IManageService {
 
     @Override
     public ServerResponse Students() {
-        return ServerResponse.createBySuccess(studentMapper.getAllStudent());
+        List<HashMap<String,Object>> allData=new ArrayList<>();
+        List<Student> students = studentMapper.getAllStudent();
+        for(int i=0;i<students.size();i++){
+            Campus campus = campusMapper.selectByPrimaryKey(students.get(i).getCampusId());
+            Coach coach = coachMapper.selectByPrimaryKey(students.get(i).getCoachId());
+            HashMap<String,Object> data=new HashMap<>();
+            data.put("student",students.get(i));
+            data.put("campus",campus);
+            data.put("coach",coach);
+            allData.add(data);
+        }
+        return ServerResponse.createBySuccess(allData);
     }
 
     @Override
@@ -86,7 +99,16 @@ public class ManageServiceImpl implements IManageService {
 
     @Override
     public ServerResponse Coachs() {
-        return ServerResponse.createBySuccess(coachMapper.getAllCoach());
+        List<HashMap<String,Object>> allData=new ArrayList<>();
+        List<Coach> coaches= coachMapper.getAllCoach();
+        for(int i=0;i<coaches.size();i++){
+            Campus campus = campusMapper.selectByPrimaryKey(coaches.get(i).getCampusId());
+            HashMap<String,Object> data=new HashMap<>();
+            data.put("student",coaches.get(i));
+            data.put("campus",campus);
+            allData.add(data);
+        }
+        return ServerResponse.createBySuccess(allData);
     }
 
     @Override

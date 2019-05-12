@@ -4,10 +4,7 @@ import com.explore.common.Const;
 import com.explore.common.LoginResponse;
 import com.explore.common.ServerResponse;
 import com.explore.form.LoginForm;
-import com.explore.pojo.Coach;
-import com.explore.pojo.Manage;
-import com.explore.pojo.Staff;
-import com.explore.pojo.Student;
+import com.explore.pojo.*;
 import com.explore.service.IManageService;
 import com.explore.service.ISubjectStudentService;
 import org.apache.catalina.Manager;
@@ -101,8 +98,8 @@ public class ManageController {
      * 修改单个学员考试信息
      */
     @PostMapping("/reviewSubjectStudent")
-    public ServerResponse reviewSubjectStudent(int subjectId, int studentId) {
-        ServerResponse serverResponse = subjectStudentService.reviewSubjectStudent(subjectId, studentId);
+    public ServerResponse reviewSubjectStudent(SubjectStudent subjectStudent) {
+        ServerResponse serverResponse = subjectStudentService.reviewSubjectStudent(subjectStudent);
         return serverResponse;
     }
 
@@ -161,5 +158,6 @@ public class ManageController {
         ServerResponse serverResponse = manageService.reviseCoach(coach);
         return serverResponse;
     }
+
 
 }

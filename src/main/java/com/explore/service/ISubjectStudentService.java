@@ -11,7 +11,7 @@ public interface ISubjectStudentService {
 
     ServerResponse showSubjectStudent();
 
-    ServerResponse reviewSubjectStudent(int subjectId, int studentId);
+    ServerResponse reviewSubjectStudent(SubjectStudent subjectStudent);
 
     ServerResponse acceptSubjectStudent(int subjectId, int studentId);
 

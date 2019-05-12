@@ -20,4 +20,8 @@ public interface SubjectStudentMapper {
     List<SubjectStudent> showExamStudent(Integer studentId);
 
     List<SubjectStudent> searchExam(Integer campusId);
+
+    List<SubjectStudent> showSubjectStudent();
+
+    SubjectStudent SubjectStudent(int subjectId, int studentId);
 }
