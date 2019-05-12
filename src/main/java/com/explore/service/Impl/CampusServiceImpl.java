@@ -53,7 +53,7 @@ public class CampusServiceImpl implements ICampusService {
             Student student = studentMapper.selectByPrimaryKey(subjectStudents.get(i).getStudentId());
             Subject subject = subjectMapper.selectByPrimaryKey(subjectStudents.get(i).getSubjectId());
             HashMap<String,Object> data=new HashMap<>();
-            data.put("name",student.getName());
+            data.put("student",student);
             data.put("subjectStudent",subjectStudents.get(i));
             data.put("subject",subject);
             allData.add(data);
