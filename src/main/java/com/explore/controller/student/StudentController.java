@@ -90,6 +90,20 @@ public class StudentController {
         return serverResponse;
     }
 
+    /**
+     * 学员选择教练
+     * @param coach
+     * @return
+     */
+    @PutMapping("/selectCoach")
+    public ServerResponse selectCoach(@RequestBody Coach coach,HttpSession session) {
+        Object object = session.getAttribute(Const.CURRENT_USER);
+        if (object==null){
+            return ServerResponse.needLogin();
+        }
+        Student student = (Student) object;
+        return studentService.addCoach(student,coach);
+    }
 
     /**
      * 学员归入某个教练
