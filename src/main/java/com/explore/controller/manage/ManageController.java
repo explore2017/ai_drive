@@ -161,7 +161,6 @@ public class ManageController {
     /**
      * 查看所有校区
      */
-
     @GetMapping("/showAllCampus")
     public ServerResponse showAllCampus(){
         ServerResponse serverResponse = manageService.showAllCampus();

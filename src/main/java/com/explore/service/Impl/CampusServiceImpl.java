@@ -68,4 +68,12 @@ public class CampusServiceImpl implements ICampusService {
             return ServerResponse.createBySuccessMessage("删除成功");
         return ServerResponse.createByErrorMessage("删除失败");
     }
+
+    @Override
+    public ServerResponse addCampus(Campus campus) {
+        int count = campusMapper.insertSelective(campus);
+        if(count ==1)
+            return ServerResponse.createBySuccessMessage("增加成功");
+        return ServerResponse.createByErrorMessage("增加失败");
+    }
 }

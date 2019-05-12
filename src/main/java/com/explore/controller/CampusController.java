@@ -17,7 +17,15 @@ public class CampusController {
     ICampusService campusService;
 
 
-
+    /**
+     * 学生添加
+     *  @param campus
+     */
+    @PostMapping("/insertCampus")
+    public ServerResponse addCampus(@RequestBody Campus campus) {
+        ServerResponse serverResponse = campusService.addCampus(campus);
+        return serverResponse;
+    }
 
     /**
      * 查看该校区所有学员基本信息
