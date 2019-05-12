@@ -33,9 +33,9 @@ public class SubjectStudentServiceImpl implements ISubjectStudentService {
     @Override
     public ServerResponse addSubjectStudent(AddSubjectStudent addSubjectStudent) {
         int count = studentMapper.checkStudent(addSubjectStudent.getPhone(), addSubjectStudent.getIdcard());
-        if(count <= 0)
+        if(count <= 0){
             return ServerResponse.createByErrorMessage("申请失败，请验证您的身份信息！");
-
+        }
         SubjectStudent subjectStudent = new SubjectStudent();
         subjectStudent.setStatus(1);
         subjectStudent.setStartTime(addSubjectStudent.getStartTime());

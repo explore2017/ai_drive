@@ -2,6 +2,7 @@ package com.explore.service;
 
 
 import com.explore.common.ServerResponse;
+import com.explore.form.PasswordForm;
 import com.explore.pojo.Coach;
 import com.explore.pojo.Student;
 import com.explore.pojo.SubjectStudent;
@@ -21,4 +22,8 @@ public interface IStudentService {
     ServerResponse addSubjectStudent(Student student, SubjectStudent subjectStudent);
 
     ServerResponse login(String idcard, String password);
+
+    ServerResponse modify(Student modify);
+
+    ServerResponse modifyPassword(PasswordForm params, Integer id);
 }

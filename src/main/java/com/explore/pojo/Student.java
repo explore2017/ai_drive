@@ -17,6 +17,8 @@ public class Student {
 
     private Integer status;
 
+    private String password;
+
     public Integer getId() {
         return id;
     }
@@ -79,5 +81,13 @@ public class Student {
 
     public void setStatus(Integer status) {
         this.status = status;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 }
