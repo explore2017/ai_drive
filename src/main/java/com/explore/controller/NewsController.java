@@ -43,7 +43,7 @@ public class NewsController {
      * @return
      */
     @PutMapping("/reviseNews")
-    public ServerResponse reviseNews(News news) {
+    public ServerResponse reviseNews(@RequestBody News news) {
         ServerResponse serverResponse = newsService.reviseNews(news);
         return serverResponse;
     }

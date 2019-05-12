@@ -31,7 +31,7 @@ public class CampusController {
      * 修改校区信息
      */
     @PutMapping("/reviseCampus")
-    public ServerResponse reviseCampus(Campus campus) {
+    public ServerResponse reviseCampus(@RequestBody Campus campus) {
         ServerResponse serverResponse = campusService.reviseCampus(campus);
         return serverResponse;
     }
@@ -42,7 +42,7 @@ public class CampusController {
      * @return
      */
     @GetMapping("/searchStudents")
-    public ServerResponse searchStudents(Campus campus) {
+    public ServerResponse searchStudents(@RequestBody Campus campus) {
         ServerResponse serverResponse = campusService.searchStudents(campus);
         return serverResponse;
     }
@@ -53,7 +53,7 @@ public class CampusController {
      * @return
      */
     @GetMapping("/searchCoaches")
-    public ServerResponse searchCoaches(Campus campus) {
+    public ServerResponse searchCoaches(@RequestBody Campus campus) {
         ServerResponse serverResponse = campusService.searchCoaches(campus);
         return serverResponse;
     }
@@ -64,7 +64,7 @@ public class CampusController {
      * @return
      */
     @GetMapping("/searchVehicles")
-    public ServerResponse searchVehicles(Campus campus) {
+    public ServerResponse searchVehicles(@RequestBody Campus campus) {
         ServerResponse serverResponse = campusService.searchVehicles(campus);
         return serverResponse;
     }
@@ -75,9 +75,9 @@ public class CampusController {
      * @return
      */
     @GetMapping("/searchExam")
-    public ServerResponse searchExam(Campus campus) {
+    public ServerResponse searchExam(@RequestBody Campus campus) {
         ServerResponse serverResponse = campusService.searchExam(campus);
-        return ServerResponse.createBySuccessMessage("success");
+        return serverResponse;
     }
 
     /**

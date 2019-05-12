@@ -80,7 +80,7 @@ public class ManageController {
      * 修改学生信息
      */
     @PutMapping("/reviseStudent")
-    public ServerResponse reviseStudent(Student student) {
+    public ServerResponse reviseStudent(@RequestBody Student student) {
         ServerResponse serverResponse = manageService.reviseStudent(student);
         return serverResponse;
     }
@@ -98,7 +98,7 @@ public class ManageController {
      * 修改单个学员考试信息
      */
     @PostMapping("/reviewSubjectStudent")
-    public ServerResponse reviewSubjectStudent(SubjectStudent subjectStudent) {
+    public ServerResponse reviewSubjectStudent(@RequestBody SubjectStudent subjectStudent) {
         ServerResponse serverResponse = subjectStudentService.reviewSubjectStudent(subjectStudent);
         return serverResponse;
     }
@@ -107,7 +107,7 @@ public class ManageController {
      * 同意单个学员考试信息录入
      */
     @PostMapping("/acceptSubjectStudent")
-        public ServerResponse acceptSubjectStudent(SubjectStudent subjectStudent) {
+        public ServerResponse acceptSubjectStudent(@RequestBody SubjectStudent subjectStudent) {
         ServerResponse serverResponse = subjectStudentService.acceptSubjectStudent(subjectStudent);
         return serverResponse;
     }
@@ -116,7 +116,7 @@ public class ManageController {
      * 确认单个学员考试通过
      */
     @PostMapping("/passSubjectStudent")
-    public ServerResponse passSubjectStudent(SubjectStudent subjectStudent) {
+    public ServerResponse passSubjectStudent(@RequestBody SubjectStudent subjectStudent) {
         ServerResponse serverResponse = subjectStudentService.passSubjectStudent(subjectStudent);
         return serverResponse;
     }
@@ -154,7 +154,7 @@ public class ManageController {
      * 修改教练信息
      */
     @PutMapping("/reviseTeacher")
-    public ServerResponse reviseTeacher( Coach coach) {
+    public ServerResponse reviseTeacher(@RequestBody Coach coach) {
         ServerResponse serverResponse = manageService.reviseCoach(coach);
         return serverResponse;
     }

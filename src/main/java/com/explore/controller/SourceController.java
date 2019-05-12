@@ -45,7 +45,7 @@ public class SourceController {
      * @return
      */
     @PutMapping("/reviseSource")
-    public ServerResponse reviseSource(Source source) {
+    public ServerResponse reviseSource(@RequestBody Source source) {
         ServerResponse serverResponse = sourceService.reviseSource(source);
         return serverResponse;
     }

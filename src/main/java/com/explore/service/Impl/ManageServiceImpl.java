@@ -104,10 +104,13 @@ public class ManageServiceImpl implements IManageService {
         for(int i=0;i<coaches.size();i++){
             Campus campus = campusMapper.selectByPrimaryKey(coaches.get(i).getCampusId());
             HashMap<String,Object> data=new HashMap<>();
-            data.put("student",coaches.get(i));
+            data.put("coach",coaches.get(i));
             data.put("campus",campus);
             allData.add(data);
         }
+//        for (Coach coach : coaches) {
+//
+//        }
         return ServerResponse.createBySuccess(allData);
     }
 

@@ -44,7 +44,7 @@ public class VehicleController {
      * @return
      */
     @PutMapping("/reviseVehicle")
-    public ServerResponse reviseVehicle(Vehicle vehicle) {
+    public ServerResponse reviseVehicle(@RequestBody Vehicle vehicle) {
         ServerResponse serverResponse = vehicleService.reviseVehicle(vehicle);
         return serverResponse;
     }

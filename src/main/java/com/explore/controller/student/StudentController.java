@@ -85,7 +85,7 @@ public class StudentController {
      * @return
      */
     @GetMapping("/showExams")
-    public ServerResponse showExams(Student student) {
+    public ServerResponse showExams(@RequestBody Student student) {
         ServerResponse<List<SubjectStudent>> serverResponse = studentService.showExam(student.getId());
         return serverResponse;
     }
@@ -98,7 +98,7 @@ public class StudentController {
      * @return
      */
     @PutMapping("/addCoach")
-    public ServerResponse addCoach(Student student, Coach coach) {
+    public ServerResponse addCoach(@RequestBody Student student,@RequestBody Coach coach) {
         ServerResponse serverResponse = studentService.addCoach(student,coach);
         return serverResponse;
     }
@@ -109,7 +109,7 @@ public class StudentController {
      * @return
      */
     @PutMapping("/reviseCampus")
-    public ServerResponse reviseCampus(Student student, int  campus_id) {
+    public ServerResponse reviseCampus(@RequestBody Student student, int  campus_id) {
         ServerResponse serverResponse = studentService.reviseCampus(student,campus_id);
         return serverResponse;
     }

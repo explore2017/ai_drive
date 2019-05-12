@@ -22,7 +22,7 @@ public class CoachController {
      * @return
      */
     @GetMapping("/showStudents")
-    public ServerResponse showStudents(Coach coach) {
+    public ServerResponse showStudents(@RequestBody Coach coach) {
         ServerResponse serverResponse = coachService.showStudent(coach.getId());
         return serverResponse;
     }
@@ -33,7 +33,7 @@ public class CoachController {
      * @return
      */
     @PutMapping("/reviseCampus")
-    public ServerResponse reviseCampus( Coach coach, Integer campus_id) {
+    public ServerResponse reviseCampus(@RequestBody Coach coach, Integer campus_id) {
         coach.setCampusId(campus_id);
         ServerResponse serverResponse = coachService.reviseCampus(coach);
         return serverResponse;
@@ -45,7 +45,7 @@ public class CoachController {
      * @return
      */
     @GetMapping("/searchSubjectStudent")
-    public ServerResponse searchExam(Coach coach) {
+    public ServerResponse searchExam(@RequestBody Coach coach) {
         ServerResponse serverResponse = coachService.searchSubjectStudent(coach.getId());
         return serverResponse;
     }
