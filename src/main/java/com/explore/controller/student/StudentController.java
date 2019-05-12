@@ -6,6 +6,7 @@ import com.explore.common.ServerResponse;
 import com.explore.dao.SubjectStudentMapper;
 import com.explore.form.AddSubjectStudent;
 import com.explore.form.LoginForm;
+import com.explore.form.PasswordForm;
 import com.explore.pojo.*;
 import com.explore.service.ISubjectStudentService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,6 +37,38 @@ public class StudentController {
         }
         return new LoginResponse("error","guest","student");
     }
+
+    @PutMapping("/info")
+    public ServerResponse changePhone(@RequestBody Student params,HttpSession session){
+        Object object = session.getAttribute(Const.CURRENT_USER);
+        if (object==null){
+            return ServerResponse.needLogin();
+        }
+        Student student = (Student) object;
+        Student modify = new Student();
+        modify.setId(student.getId());
+        modify.setPhone(params.getPhone());
+        //方法可复用
+        ServerResponse serverResponse = studentService.modify(modify);
+        if (serverResponse.isSuccess()){
+            //更新session
+            student.setPhone(params.getPhone());
+            session.setAttribute(Const.CURRENT_USER,student);
+        }
+        return serverResponse;
+    }
+
+    @PutMapping("/password")
+    public ServerResponse changePhone(@RequestBody PasswordForm params, HttpSession session){
+        Object object = session.getAttribute(Const.CURRENT_USER);
+        if (object==null){
+            return ServerResponse.needLogin();
+        }
+        Student student = (Student) object;
+        return studentService.modifyPassword(params,student.getId());
+    }
+
+
     /**
      * 展现该学员个人信息(包含是否拿到驾照)
      * @return
