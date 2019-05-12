@@ -13,7 +13,7 @@ public interface ISubjectStudentService {
 
     ServerResponse reviewSubjectStudent(SubjectStudent subjectStudent);
 
-    ServerResponse acceptSubjectStudent(int subjectId, int studentId);
+    ServerResponse acceptSubjectStudent(SubjectStudent subjectStudent);
 
-    ServerResponse passSubjectStudent(int subjectId, int studentId);
+    ServerResponse passSubjectStudent(SubjectStudent subjectStudent);
 }

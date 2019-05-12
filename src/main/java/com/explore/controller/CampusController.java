@@ -18,7 +18,7 @@ public class CampusController {
 
 
     /**
-     * 学生添加
+     * 校区添加
      *  @param campus
      */
     @PostMapping("/insertCampus")

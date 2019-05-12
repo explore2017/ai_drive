@@ -69,12 +69,18 @@ public class SubjectStudentServiceImpl implements ISubjectStudentService {
     }
 
     @Override
-    public ServerResponse acceptSubjectStudent(int subjectId, int studentId) {
-        return ServerResponse.createBySuccessMessage("success");
+    public ServerResponse acceptSubjectStudent(SubjectStudent subjectStudent) {
+        int count = subjectStudentMapper.updateByPrimaryKey(subjectStudent);
+        if(count==1)
+            return ServerResponse.createBySuccessMessage("确认成功");
+        return ServerResponse.createByErrorMessage("确认失败");
     }
 
     @Override
-    public ServerResponse passSubjectStudent(int subjectId, int studentId) {
-        return ServerResponse.createBySuccessMessage("success");
+    public ServerResponse passSubjectStudent(SubjectStudent subjectStudent) {
+        int count = subjectStudentMapper.updateByPrimaryKey(subjectStudent);
+        if(count==1)
+            return ServerResponse.createBySuccessMessage("通过成功");
+        return ServerResponse.createByErrorMessage("通过失败");
     }
 }

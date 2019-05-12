@@ -107,8 +107,8 @@ public class ManageController {
      * 同意单个学员考试信息录入
      */
     @PostMapping("/acceptSubjectStudent")
-    public ServerResponse acceptSubjectStudent(int subjectId, int studentId) {
-        ServerResponse serverResponse = subjectStudentService.acceptSubjectStudent(subjectId, studentId);
+        public ServerResponse acceptSubjectStudent(SubjectStudent subjectStudent) {
+        ServerResponse serverResponse = subjectStudentService.acceptSubjectStudent(subjectStudent);
         return serverResponse;
     }
 
@@ -116,8 +116,8 @@ public class ManageController {
      * 确认单个学员考试通过
      */
     @PostMapping("/passSubjectStudent")
-    public ServerResponse passSubjectStudent(int subjectId, int studentId) {
-        ServerResponse serverResponse = subjectStudentService.passSubjectStudent(subjectId, studentId);
+    public ServerResponse passSubjectStudent(SubjectStudent subjectStudent) {
+        ServerResponse serverResponse = subjectStudentService.passSubjectStudent(subjectStudent);
         return serverResponse;
     }
 
