@@ -19,4 +19,6 @@ public interface IStudentService {
     ServerResponse reviseCampus(Student student, int campus_id);
 
     ServerResponse addSubjectStudent(Student student, SubjectStudent subjectStudent);
+
+    ServerResponse login(String idcard, String password);
 }

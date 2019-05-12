@@ -179,4 +179,10 @@ student.`status` = 0
     select count(*) from student
     where phone = #{phone} and idcard =#{idcard}
   </select>
+  <select id="login" resultType="com.explore.pojo.Student">
+    select
+    <include refid="Base_Column_List" />
+    from student
+    where idcard = #{idcard} and password = #{password}
+  </select>
 </mapper>

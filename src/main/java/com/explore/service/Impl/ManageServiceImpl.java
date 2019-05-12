@@ -27,11 +27,12 @@ public class ManageServiceImpl implements IManageService {
     StaffMapper staffMapper;
 
     @Override
-    public ServerResponse<Manager> login(String name, String password) {
+    public ServerResponse<Staff> login(String name, String password) {
         Staff staff = staffMapper.login(name,password);
-        if(staff==null)
-            return ServerResponse.createByErrorMessage("登陆失败");
-        return ServerResponse.createBySuccessMessage("登陆成功");
+        if(staff==null){
+            return ServerResponse.createByErrorMessage("用户名或密码错误");
+        }
+        return ServerResponse.createBySuccessMessage("登陆成功",staff);
     }
 
     @Override

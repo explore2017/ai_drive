@@ -1,8 +1,11 @@
 package com.explore.controller.student;
 
+import com.explore.common.Const;
+import com.explore.common.LoginResponse;
 import com.explore.common.ServerResponse;
 import com.explore.dao.SubjectStudentMapper;
 import com.explore.form.AddSubjectStudent;
+import com.explore.form.LoginForm;
 import com.explore.pojo.*;
 import com.explore.service.ISubjectStudentService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +14,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Date;
 import com.explore.service.IStudentService;
 
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 @RestController
@@ -22,6 +26,16 @@ public class StudentController {
     @Autowired
     ISubjectStudentService subjectStudentService;
 
+
+    @PostMapping("/login")
+    public LoginResponse login(@RequestBody LoginForm user, HttpSession session) {
+        ServerResponse serverResponse = studentService.login(user.getUserName(),user.getPassword());
+        if (serverResponse.isSuccess()) {
+            session.setAttribute(Const.CURRENT_USER,serverResponse.getData());
+            return new LoginResponse("ok","student","student");
+        }
+        return new LoginResponse("error","guest","student");
+    }
     /**
      * 展现该学员个人信息(包含是否拿到驾照)
      * @return

@@ -30,4 +30,6 @@ public interface StudentMapper {
     Student showMessage(String name, String idcard);
 
     List<Student> searchStudentCampus(Integer campusId);
+
+    Student login(@Param("idcard") String userName,@Param("password") String password);
 }

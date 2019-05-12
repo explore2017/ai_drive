@@ -65,4 +65,13 @@ public class StudentServiceImpl implements IStudentService {
         return ServerResponse.createByErrorMessage("增加失败");
     }
 
+    @Override
+    public ServerResponse login(String userName, String password) {
+        Student student = studentMapper.login(userName,password);
+        if (student==null){
+            return ServerResponse.createByErrorMessage("身份证或密码错误");
+        }
+        return ServerResponse.createBySuccess(student);
+    }
+
 }

@@ -22,7 +22,7 @@
     from staff
     where id = #{id,jdbcType=INTEGER}
   </select>
-  <select id="login" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+  <select id="login" resultMap="BaseResultMap" >
     select
     <include refid="Base_Column_List" />
     from staff

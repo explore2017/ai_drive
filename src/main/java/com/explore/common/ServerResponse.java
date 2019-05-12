@@ -29,6 +29,10 @@ public class ServerResponse<T> {
         this.data = data;
     }
 
+    public static ServerResponse needLogin() {
+        return new ServerResponse(ResponseCode.NEED_LOGIN.getCode(),"请登录后重新尝试");
+    }
+
     public boolean isSuccess() {
         return this.status == ResponseCode.SUCCESS.getCode();
     }

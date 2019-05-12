@@ -1,9 +1,12 @@
 package com.explore.controller.manage;
 
 import com.explore.common.Const;
+import com.explore.common.LoginResponse;
 import com.explore.common.ServerResponse;
+import com.explore.form.LoginForm;
 import com.explore.pojo.Coach;
 import com.explore.pojo.Manage;
+import com.explore.pojo.Staff;
 import com.explore.pojo.Student;
 import com.explore.service.IManageService;
 import com.explore.service.ISubjectStudentService;
@@ -27,12 +30,13 @@ public class ManageController {
      * 管理员登录
      */
     @PostMapping("/login")
-    public ServerResponse login(@RequestBody Manage manage, HttpSession session) {
-        ServerResponse serverResponse = manageService.login(manage.getName(),manage.getPassword());
+    public LoginResponse login(@RequestBody LoginForm user, HttpSession session) {
+        ServerResponse<Staff> serverResponse = manageService.login(user.getUserName(),user.getPassword());
         if (serverResponse.isSuccess()) {
-            session.setAttribute(Const.CURRENT_USER,manage);
+            session.setAttribute(Const.CURRENT_USER,serverResponse.getData());
+            return new LoginResponse("ok","admin","admin");
         }
-        return serverResponse;
+        return new LoginResponse("error","guest","admin");
     }
 
     /**
