@@ -31,4 +31,6 @@ public interface IManageService {
     ServerResponse reviseCoach(Coach coach);
 
     ServerResponse showAllCampus();
+
+    ServerResponse showAllSubject();
 }

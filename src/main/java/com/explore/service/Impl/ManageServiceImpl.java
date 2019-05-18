@@ -1,10 +1,7 @@
 package com.explore.service.Impl;
 
 import com.explore.common.ServerResponse;
-import com.explore.dao.CampusMapper;
-import com.explore.dao.CoachMapper;
-import com.explore.dao.StaffMapper;
-import com.explore.dao.StudentMapper;
+import com.explore.dao.*;
 import com.explore.pojo.*;
 import com.explore.service.IManageService;
 import org.apache.catalina.Manager;
@@ -27,6 +24,8 @@ public class ManageServiceImpl implements IManageService {
     StaffMapper staffMapper;
     @Autowired
     CampusMapper campusMapper;
+    @Autowired
+    SubjectMapper subjectMapper;
 
     @Override
     public ServerResponse<Staff> login(String name, String password) {
@@ -147,5 +146,11 @@ public class ManageServiceImpl implements IManageService {
     public ServerResponse showAllCampus() {
         List<Campus> campuses = campusMapper.getAllCampus();
         return ServerResponse.createBySuccess(campuses);
+    }
+
+    @Override
+    public ServerResponse showAllSubject() {
+        List<Subject> subjects = subjectMapper.showSubject();
+        return ServerResponse.createBySuccess(subjects);
     }
 }

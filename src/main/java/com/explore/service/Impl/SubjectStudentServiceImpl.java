@@ -7,6 +7,7 @@ import com.explore.dao.SubjectMapper;
 import com.explore.dao.SubjectStudentMapper;
 import com.explore.form.AddSubjectStudent;
 import com.explore.pojo.Student;
+import com.explore.pojo.StudentExam;
 import com.explore.pojo.Subject;
 import com.explore.pojo.SubjectStudent;
 import com.explore.service.ISubjectStudentService;
@@ -46,26 +47,35 @@ public class SubjectStudentServiceImpl implements ISubjectStudentService {
 
     @Override
     public ServerResponse showSubjectStudent() {
-        List<HashMap<String,Object>> allData=new ArrayList<>();
-        List<SubjectStudent> subjectStudents = subjectStudentMapper.showSubjectStudent();
-        for(int i=0;i<subjectStudents.size();i++){
-            Student student = studentMapper.selectByPrimaryKey(subjectStudents.get(i).getStudentId());
-            Subject subject = subjectMapper.selectByPrimaryKey(subjectStudents.get(i).getSubjectId());
-            HashMap<String,Object> data=new HashMap<>();
-            data.put("student",student);
-            data.put("subjectStudent",subjectStudents.get(i));
-            data.put("subject",subject);
-            allData.add(data);
-        }
-        return ServerResponse.createBySuccess(allData);
+        List<SubjectStudent> subjectStudents = studentExamMapper.showSubjectStudent();
+        if(subjectStudents.size() != 0)
+            return ServerResponse.createBySuccess(subjectStudents);
+        return  ServerResponse.createByErrorMessage("暂时没有数据");
     }
 
     @Override
     public ServerResponse reviewSubjectStudent(SubjectStudent subjectStudent) {
-       int count = subjectStudentMapper.updateByPrimaryKey(subjectStudent);
-       if(count==1)
-           return ServerResponse.createBySuccessMessage("修改成功");
-       return ServerResponse.createByErrorMessage("修改失败");
+        int count = subjectStudentMapper.updateByPrimaryKey(subjectStudent);
+        if(count==1)
+            return ServerResponse.createBySuccessMessage("修改成功");
+        return ServerResponse.createByErrorMessage("修改失败");
+    }
+
+    @Override
+    public ServerResponse deleteSubjectStudent( int id) {
+        int count = subjectStudentMapper.deleteByPrimaryKey(id);
+        if(count==1)
+            return ServerResponse.createBySuccessMessage("删除成功");
+        return ServerResponse.createByErrorMessage("删除失败");
+    }
+
+    @Override
+    public ServerResponse showStudentExam(Student student) {
+        List<SubjectStudent> subjectStudents =  studentExamMapper.findStudentExam(student.getName());
+
+        if(subjectStudents.size() != 0)
+            return ServerResponse.createBySuccess(subjectStudents);
+        return  ServerResponse.createByErrorMessage("暂时没有数据");
     }
 
     @Override

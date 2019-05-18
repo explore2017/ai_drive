@@ -3,16 +3,15 @@ package com.explore.controller.manage;
 import com.explore.common.Const;
 import com.explore.common.LoginResponse;
 import com.explore.common.ServerResponse;
+import com.explore.form.AddSubjectStudent;
 import com.explore.form.LoginForm;
 import com.explore.pojo.*;
 import com.explore.service.IManageService;
 import com.explore.service.ISubjectStudentService;
-import org.apache.catalina.Manager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
-import java.util.List;
 
 @RestController
 @RequestMapping("/manage")
@@ -86,6 +85,15 @@ public class ManageController {
     }
 
     /**
+     * 添加学员考试信息
+     */
+    @PostMapping("/addSubjectStudent")
+    public ServerResponse addSubjectStudent(@RequestBody AddSubjectStudent addSubjectStudent) {
+        ServerResponse serverResponse = subjectStudentService.addSubjectStudent(addSubjectStudent);
+        return serverResponse;
+    }
+
+    /**
      * 展示所有学员考试信息
      */
     @PostMapping("/showSubjectStudent")
@@ -95,11 +103,29 @@ public class ManageController {
     }
 
     /**
+     * 展示所有学员考试信息
+     */
+    @PostMapping("/showStudentExam")
+    public ServerResponse showStudentExam(@RequestBody Student student) {
+        ServerResponse serverResponse = subjectStudentService.showStudentExam(student);
+        return serverResponse;
+    }
+
+    /**
      * 修改单个学员考试信息
      */
     @PostMapping("/reviewSubjectStudent")
     public ServerResponse reviewSubjectStudent(@RequestBody SubjectStudent subjectStudent) {
         ServerResponse serverResponse = subjectStudentService.reviewSubjectStudent(subjectStudent);
+        return serverResponse;
+    }
+
+    /**
+     * 删除单个学员考试信息
+     */
+    @DeleteMapping("/deleteSubjectStudent/{id}")
+    public ServerResponse deleteSubjectStudent(@PathVariable("id") Integer id) {
+        ServerResponse serverResponse = subjectStudentService.deleteSubjectStudent(id);
         return serverResponse;
     }
 
@@ -164,6 +190,14 @@ public class ManageController {
     @GetMapping("/showAllCampus")
     public ServerResponse showAllCampus(){
         ServerResponse serverResponse = manageService.showAllCampus();
+        return serverResponse;
+    }
+    /**
+     * 查看所有考试科目
+     */
+    @GetMapping("/showAllSubject")
+    public ServerResponse showAllSubject(){
+        ServerResponse serverResponse = manageService.showAllSubject();
         return serverResponse;
     }
 }

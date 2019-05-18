@@ -17,7 +17,7 @@
     <result column="end_time" property="endTime" jdbcType="TIMESTAMP" />
   </resultMap>
   <sql id="Base_Column_List" >
-    id, student_name, phone, campus_name, subject_name, subject_id, student_id, exam_id, status, count, position, price, start_time,
+    id, student_name, phone, campus_name, subject_name, subject_id, student_id, status, count, position, price, start_time,
     end_time
   </sql>
   <insert id="insert" parameterType="com.explore.pojo.StudentExam" >
@@ -117,8 +117,12 @@
       </if>
     </trim>
   </insert>
-  <!--<select id="showSubjectStudent" resultMap="BaseResultMap">-->
-    <!--select <include refid="Base_Column_List" />-->
-    <!--from student_exam-->
-  <!--</select>-->
+  <select id="showSubjectStudent" resultMap="BaseResultMap">
+    select <include refid="Base_Column_List" />
+    from student_exam
+  </select>
+  <select id="findStudentExam" resultMap="BaseResultMap">
+    select <include refid="Base_Column_List" />
+    from student_exam where student_name = #{name}
+  </select>
 </mapper>
