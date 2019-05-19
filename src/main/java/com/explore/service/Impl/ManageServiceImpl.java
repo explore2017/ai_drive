@@ -153,4 +153,20 @@ public class ManageServiceImpl implements IManageService {
         List<Subject> subjects = subjectMapper.showSubject();
         return ServerResponse.createBySuccess(subjects);
     }
+
+    @Override
+    public ServerResponse showStudents(Student student) {
+        List<HashMap<String,Object>> allData=new ArrayList<>();
+        List<Student> students = studentMapper.showStudents(student);
+        for(int i=0;i<students.size();i++){
+            Campus campus = campusMapper.selectByPrimaryKey(students.get(i).getCampusId());
+            Coach coach = coachMapper.selectByPrimaryKey(students.get(i).getCoachId());
+            HashMap<String,Object> data=new HashMap<>();
+            data.put("student",students.get(i));
+            data.put("campus",campus);
+            data.put("coach",coach);
+            allData.add(data);
+        }
+        return ServerResponse.createBySuccess(allData);
+    }
 }

@@ -123,6 +123,14 @@
   </select>
   <select id="findStudentExam" resultMap="BaseResultMap">
     select <include refid="Base_Column_List" />
-    from student_exam where student_name = #{name}
+    from student_exam
+    <where>
+      <if test="studentName != null" >
+        student_name = #{studentName}
+      </if>
+      <if test="status != null" >
+        status = #{status}
+      </if>
+    </where>
   </select>
 </mapper>

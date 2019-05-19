@@ -70,8 +70,8 @@ public class SubjectStudentServiceImpl implements ISubjectStudentService {
     }
 
     @Override
-    public ServerResponse showStudentExam(Student student) {
-        List<SubjectStudent> subjectStudents =  studentExamMapper.findStudentExam(student.getName());
+    public ServerResponse showStudentExam(StudentExam studentExam) {
+        List<SubjectStudent> subjectStudents =  studentExamMapper.findStudentExam(studentExam);
 
         if(subjectStudents.size() != 0)
             return ServerResponse.createBySuccess(subjectStudents);

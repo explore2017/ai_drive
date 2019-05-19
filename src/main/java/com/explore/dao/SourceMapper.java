@@ -18,4 +18,6 @@ public interface SourceMapper {
     int updateByPrimaryKey(Source record);
 
     List<Source> showSources();
+
+    List<Source> showSource(Source source);
 }

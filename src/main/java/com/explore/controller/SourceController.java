@@ -40,6 +40,16 @@ public class SourceController {
     }
 
     /**
+     * 展现所有资源
+     * @return
+     */
+    @PostMapping("/showSource")
+    public ServerResponse showSource(@RequestBody Source source) {
+        ServerResponse serverResponse = sourceService.showSource(source);
+        return serverResponse;
+    }
+
+    /**
      * 修改资源信息
      * @param source
      * @return

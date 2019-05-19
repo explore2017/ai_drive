@@ -64,4 +64,18 @@ public class SourceServiceImpl implements ISourceService {
         }
         return ServerResponse.createByErrorMessage("删除资源失败");
     }
+
+    @Override
+    public ServerResponse showSource(Source source) {
+        List<HashMap<String,Object>> allData=new ArrayList<>();
+        List<Source> sources = sourceMapper.showSource(source);
+        for(int i=0;i<sources.size();i++) {
+            Campus campus = campusMapper.selectByPrimaryKey(sources.get(i).getCampusId());
+            HashMap<String,Object> data=new HashMap<>();
+            data.put("source",sources.get(i));
+            data.put("campus",campus);
+            allData.add(data);
+        }
+        return ServerResponse.createBySuccess(allData);
+    }
 }

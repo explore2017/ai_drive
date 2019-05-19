@@ -14,4 +14,6 @@ public interface ISourceService {
     ServerResponse reviseSource(Source source);
 
     ServerResponse deleteSource(Integer id);
+
+    ServerResponse showSource(Source source);
 }

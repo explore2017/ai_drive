@@ -4,6 +4,7 @@ package com.explore.service;
 import com.explore.common.ServerResponse;
 import com.explore.form.AddSubjectStudent;
 import com.explore.pojo.Student;
+import com.explore.pojo.StudentExam;
 import com.explore.pojo.SubjectStudent;
 
 public interface ISubjectStudentService {
@@ -20,5 +21,5 @@ public interface ISubjectStudentService {
 
     ServerResponse deleteSubjectStudent( int id);
 
-    ServerResponse showStudentExam(Student student);
+    ServerResponse showStudentExam(StudentExam studentExam);
 }

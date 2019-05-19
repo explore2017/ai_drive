@@ -119,4 +119,16 @@
       status = #{status,jdbcType=INTEGER}
     where id = #{id,jdbcType=INTEGER}
   </update>
+  <select id="showSource" resultMap="BaseResultMap">
+    select <include refid="Base_Column_List" />
+    from source
+    <where>
+      <if test="campusId != null" >
+        campus_id = #{campusId,jdbcType=INTEGER}
+      </if>
+      <if test="status != null" >
+        status = #{status}
+      </if>
+    </where>
+  </select>
 </mapper>

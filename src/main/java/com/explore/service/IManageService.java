@@ -33,4 +33,6 @@ public interface IManageService {
     ServerResponse showAllCampus();
 
     ServerResponse showAllSubject();
+
+    ServerResponse showStudents(Student student);
 }

@@ -12,5 +12,5 @@ public interface StudentExamMapper {
 
     List<SubjectStudent> showSubjectStudent();
 
-    List<SubjectStudent> findStudentExam(String name);
+    List<SubjectStudent> findStudentExam(StudentExam studentExam);
 }

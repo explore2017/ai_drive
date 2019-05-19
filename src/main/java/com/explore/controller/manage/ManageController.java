@@ -53,6 +53,15 @@ public class ManageController {
         return serverResponse;
     }
 
+    /**
+     * 查看所有学生数据
+     */
+    @PostMapping("/showStudents")
+    public ServerResponse showStudents(@RequestBody Student student){
+        ServerResponse serverResponse=manageService.showStudents(student);
+        return serverResponse;
+    }
+
 
     /**
      * 学生添加
@@ -106,8 +115,8 @@ public class ManageController {
      * 展示所有学员考试信息
      */
     @PostMapping("/showStudentExam")
-    public ServerResponse showStudentExam(@RequestBody Student student) {
-        ServerResponse serverResponse = subjectStudentService.showStudentExam(student);
+    public ServerResponse showStudentExam(@RequestBody StudentExam studentExam) {
+        ServerResponse serverResponse = subjectStudentService.showStudentExam(studentExam);
         return serverResponse;
     }
 

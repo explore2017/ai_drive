@@ -185,4 +185,17 @@ student.`status` = 0
     from student
     where idcard = #{idcard} and password = #{password}
   </select>
+  <select id="showStudents" resultMap="BaseResultMap" parameterType="com.explore.pojo.Student">
+    select
+    <include refid="Base_Column_List" />
+    from student
+    <where>
+      <if test="campusId != null" >
+        campus_id = #{campusId,jdbcType=INTEGER}
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=INTEGER}
+      </if>
+    </where>
+  </select>
 </mapper>
