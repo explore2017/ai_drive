@@ -194,7 +194,7 @@ student.`status` = 0
         campus_id = #{campusId,jdbcType=INTEGER}
       </if>
       <if test="status != null" >
-        status = #{status,jdbcType=INTEGER}
+        and status = #{status,jdbcType=INTEGER}
       </if>
     </where>
   </select>

@@ -127,7 +127,7 @@
         campus_id = #{campusId,jdbcType=INTEGER}
       </if>
       <if test="status != null" >
-        status = #{status}
+        and status = #{status}
       </if>
     </where>
   </select>

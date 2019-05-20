@@ -17,13 +17,13 @@
     <result column="end_time" property="endTime" jdbcType="TIMESTAMP" />
   </resultMap>
   <sql id="Base_Column_List" >
-    id, student_name, phone, campus_name, subject_name, subject_id, student_id, status, count, position, price, start_time,
+    id, student_name, phone, campus_name, subject_name, subject_id, student_id, status, `count`, `position`, price, start_time,
     end_time
   </sql>
   <insert id="insert" parameterType="com.explore.pojo.StudentExam" >
     insert into student_exam (id, student_name, phone, 
       campus_name, subject_name, student_id, 
-      subject_id, count, status, 
+      subject_id,`count`, status,
       position, price, start_time, 
       end_time)
     values (#{id,jdbcType=INTEGER}, #{studentName,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}, 
@@ -129,7 +129,7 @@
         student_name = #{studentName}
       </if>
       <if test="status != null" >
-        status = #{status}
+        and status = #{status}
       </if>
     </where>
   </select>
