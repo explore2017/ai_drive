@@ -4,6 +4,7 @@ import com.explore.common.ServerResponse;
 import com.explore.dao.*;
 import com.explore.pojo.*;
 import com.explore.service.IManageService;
+import com.explore.vo.QuartersMapper;
 import org.apache.catalina.Manager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -26,6 +27,8 @@ public class ManageServiceImpl implements IManageService {
     CampusMapper campusMapper;
     @Autowired
     SubjectMapper subjectMapper;
+    @Autowired
+    QuartersMapper quartersMapper;
 
     @Override
     public ServerResponse<Staff> login(String name, String password) {
@@ -161,10 +164,12 @@ public class ManageServiceImpl implements IManageService {
         for(int i=0;i<students.size();i++){
             Campus campus = campusMapper.selectByPrimaryKey(students.get(i).getCampusId());
             Coach coach = coachMapper.selectByPrimaryKey(students.get(i).getCoachId());
+            Quarters quarters = quartersMapper.selectByPrimaryKey(students.get(i).getQuarterId());
             HashMap<String,Object> data=new HashMap<>();
             data.put("student",students.get(i));
             data.put("campus",campus);
             data.put("coach",coach);
+            data.put("quarters",quarters);
             allData.add(data);
         }
         return ServerResponse.createBySuccess(allData);

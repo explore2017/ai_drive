@@ -20,4 +20,6 @@ public interface NewsMapper {
     int updateByPrimaryKey(News record);
 
     List<News> searchAllNews();
+
+    List<News> searchType(Integer typeId);
 }

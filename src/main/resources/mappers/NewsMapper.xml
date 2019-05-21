@@ -25,6 +25,12 @@
     from news
     where id = #{id,jdbcType=BIGINT}
   </select>
+  <select id="searchType" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Long" >
+    select
+    <include refid="Base_Column_List" />
+    from news
+    where type_id = #{typeId,jdbcType=INTEGER}
+  </select>
   <select id="searchAllNews" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Long" >
     select
     <include refid="Base_Column_List" />

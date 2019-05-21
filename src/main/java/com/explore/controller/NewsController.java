@@ -17,6 +17,7 @@ public class NewsController {
     @Autowired
     INewsService newsService;
 
+
     /**
      * 查看所有新闻
      * @return
@@ -26,6 +27,27 @@ public class NewsController {
     {
         ServerResponse serverResponse = newsService.searchAllNews();
         return  serverResponse;
+    }
+    /**
+     * 查看所有新闻类型
+     * @return
+     */
+    @GetMapping
+    public ServerResponse searchNewType()
+    {
+        ServerResponse serverResponse =newsService.searchNewType();
+        return serverResponse;
+    }
+
+    /**
+     * 不同类型的新闻
+     * @return
+     */
+    @GetMapping
+    public ServerResponse searchType(Integer typeId)
+    {
+        ServerResponse serverResponse =newsService.searchType(typeId);
+        return serverResponse;
     }
 
     /**
