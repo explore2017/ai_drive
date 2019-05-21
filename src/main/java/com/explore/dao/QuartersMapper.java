@@ -1,4 +1,4 @@
-package com.explore.vo;
+package com.explore.dao;
 
 import com.explore.pojo.Quarters;
 

@@ -16,7 +16,7 @@ public class Vehicle {
     private Integer coachId;
 
     private Integer status;
-    @JsonFormat(timezone = "GMT+8", pattern = "yyyy-MM-dd ")
+    @JsonFormat(timezone = "GMT+8", pattern = "yyyy-MM-dd")
     private Date purchaseTime;
 
     public Integer getId() {

@@ -4,8 +4,7 @@ import com.explore.common.ServerResponse;
 import com.explore.dao.*;
 import com.explore.pojo.*;
 import com.explore.service.IManageService;
-import com.explore.vo.QuartersMapper;
-import org.apache.catalina.Manager;
+import com.explore.dao.QuartersMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

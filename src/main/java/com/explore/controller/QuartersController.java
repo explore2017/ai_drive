@@ -17,7 +17,7 @@ public class QuartersController {
      * 查看所有季度
      * @return
      */
-    @GetMapping
+    @GetMapping("allQuarters")
     public ServerResponse searchAllQuarters()
     {
         ServerResponse serverResponse = quartersService.searchAllQuarters();
@@ -28,7 +28,7 @@ public class QuartersController {
      * 查看三个季度
      * @return
      */
-    @GetMapping
+    @GetMapping("threeQuarters")
     public  ServerResponse searchThreeQuarters()
     {
         ServerResponse serverResponse = quartersService.searchThreeQuarters();
@@ -40,7 +40,7 @@ public class QuartersController {
      * @param quarters
      * @return
      */
-    @PutMapping
+    @PutMapping("reviseQuarters")
     public ServerResponse reviseQuarters(@RequestBody Quarters quarters)
     {
         ServerResponse serverResponse = quartersService.reviseQuarters(quarters);
