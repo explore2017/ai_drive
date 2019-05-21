@@ -3,15 +3,19 @@ package com.explore.service.Impl;
 
 import com.explore.common.ServerResponse;
 import com.explore.dao.StudentMapper;
+import com.explore.dao.SubjectMapper;
 import com.explore.dao.SubjectStudentMapper;
 import com.explore.form.PasswordForm;
 import com.explore.pojo.Coach;
 import com.explore.pojo.Student;
+import com.explore.pojo.Subject;
 import com.explore.pojo.SubjectStudent;
 import com.explore.service.IStudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 @Service
@@ -21,6 +25,8 @@ public class StudentServiceImpl implements IStudentService {
     StudentMapper studentMapper;
     @Autowired
     SubjectStudentMapper subjectStudentMapper;
+    @Autowired
+    SubjectMapper subjectMapper;
 
     @Override
     public ServerResponse showMessage(String name, String idcard) {
@@ -32,7 +38,15 @@ public class StudentServiceImpl implements IStudentService {
 
     @Override
     public ServerResponse showExam(Integer studentId) {
+        List<HashMap<String,Object>> allData=new ArrayList<>();
         List<SubjectStudent> subjectStudents = subjectStudentMapper.showExamStudent(studentId);
+        for (SubjectStudent subjectStudent : subjectStudents) {
+            HashMap<String,Object> data=new HashMap<>();
+            Subject subject = subjectMapper.selectByPrimaryKey(subjectStudent.getSubjectId());
+            data.put("subjectStudent",subjectStudent);
+            data.put("subject",subject);
+            allData.add(data);
+        }
         return ServerResponse.createBySuccess(subjectStudents);
     }
 

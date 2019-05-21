@@ -43,7 +43,7 @@ public class NewsController {
      * 不同类型的新闻
      * @return
      */
-    @GetMapping
+    @GetMapping("/allType")
     public ServerResponse searchType(Integer typeId)
     {
         ServerResponse serverResponse =newsService.searchType(typeId);
