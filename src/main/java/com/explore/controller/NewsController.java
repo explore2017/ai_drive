@@ -32,7 +32,7 @@ public class NewsController {
      * 查看所有新闻类型
      * @return
      */
-    @GetMapping
+    @GetMapping("/searchNewType")
     public ServerResponse searchNewType()
     {
         ServerResponse serverResponse =newsService.searchNewType();
