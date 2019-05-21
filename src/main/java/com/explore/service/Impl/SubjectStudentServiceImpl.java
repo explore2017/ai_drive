@@ -55,7 +55,7 @@ public class SubjectStudentServiceImpl implements ISubjectStudentService {
 
     @Override
     public ServerResponse reviewSubjectStudent(SubjectStudent subjectStudent) {
-        int count = subjectStudentMapper.updateByPrimaryKey(subjectStudent);
+        int count = subjectStudentMapper.updateByPrimaryKeySelective(subjectStudent);
         if(count==1)
             return ServerResponse.createBySuccessMessage("修改成功");
         return ServerResponse.createByErrorMessage("修改失败");
