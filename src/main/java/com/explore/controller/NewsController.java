@@ -39,6 +39,16 @@ public class NewsController {
         return serverResponse;
     }
 
+    /**
+     * 不同类型的新闻
+     * @return
+     */
+    @GetMapping
+    public ServerResponse searchType(Integer typeId)
+    {
+        ServerResponse serverResponse =newsService.searchType(typeId);
+        return serverResponse;
+    }
 
     /**
      * 添加新闻

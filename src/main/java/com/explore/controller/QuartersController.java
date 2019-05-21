@@ -2,11 +2,10 @@ package com.explore.controller;
 
 
 import com.explore.common.ServerResponse;
+import com.explore.pojo.Quarters;
 import com.explore.service.IQuartersService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/quarters")
@@ -25,6 +24,26 @@ public class QuartersController {
         return  serverResponse;
     }
 
+    /**
+     * 查看三个季度
+     * @return
+     */
     @GetMapping
-    public  ServerResponse
+    public  ServerResponse searchThreeQuarters()
+    {
+        ServerResponse serverResponse = quartersService.searchThreeQuarters();
+        return serverResponse;
+    }
+
+    /**
+     * 修改季度
+     * @param quarters
+     * @return
+     */
+    @PutMapping
+    public ServerResponse reviseQuarters(@RequestBody Quarters quarters)
+    {
+        ServerResponse serverResponse = quartersService.reviseQuarters(quarters);
+        return serverResponse;
+    }
 }

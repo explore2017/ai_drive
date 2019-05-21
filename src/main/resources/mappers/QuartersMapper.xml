@@ -23,6 +23,11 @@
     <include refid="Base_Column_List" />
   from quarters order by id DESC limit 1
   </select>
+  <select id="searchThreeQuarters" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select
+    <include refid="Base_Column_List" />
+    from quarters order by id DESC limit 3
+  </select>
   <select id="searchAllQuarters" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select
     <include refid="Base_Column_List" />

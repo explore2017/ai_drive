@@ -70,4 +70,10 @@ public class NewsServicelmpl implements INewsService {
         List<NewsType> newsTypes = newsTypeMapper.searchNewType();
         return ServerResponse.createBySuccess(newsTypes);
     }
+
+    @Override
+    public ServerResponse searchType(Integer typeId) {
+        List<News> news = newsMapper.searchType(typeId);
+        return ServerResponse.createBySuccess(news);
+    }
 }

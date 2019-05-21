@@ -20,4 +20,6 @@ public interface QuartersMapper {
     List<Quarters> searchAllQuarters();
 
     Quarters searchNewQuarter();
+
+    List<Quarters> searchThreeQuarters();
 }
