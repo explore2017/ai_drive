@@ -19,6 +19,8 @@ public class Student {
 
     private String password;
 
+    private Integer quarterId;
+
     public Integer getId() {
         return id;
     }
@@ -89,5 +91,13 @@ public class Student {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public Integer getQuarterId() {
+        return quarterId;
+    }
+
+    public void setQuarterId(Integer quarterId) {
+        this.quarterId = quarterId;
     }
 }

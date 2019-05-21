@@ -10,9 +10,10 @@
     <result column="campus_id" property="campusId" jdbcType="INTEGER" />
     <result column="coach_id" property="coachId" jdbcType="INTEGER" />
     <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="quarter_id" property="quarterId" jdbcType="INTEGER" />
   </resultMap>
   <sql id="Base_Column_List" >
-    id, name, sex, phone, idcard, campus_id, coach_id, status
+    id, name, sex, phone, idcard, campus_id, coach_id, status,quarter_id
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
@@ -25,7 +26,7 @@
     <include refid="Base_Column_List" />
     from student
   </select>
-  <select id="getiIdCard" resultMap="BaseResultMap">
+  <select id="getIdCard" resultMap="BaseResultMap">
     select
     <include refid="Base_Column_List" />
     from student
@@ -76,10 +77,10 @@ student.`status` = 0
   <insert id="insert" parameterType="com.explore.pojo.Student" >
     insert into student (id, name, sex, 
       phone, idcard, campus_id, 
-      coach_id, status)
+      coach_id, status,quarter_id)
     values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{sex,jdbcType=VARCHAR}, 
       #{phone,jdbcType=VARCHAR}, #{idcard,jdbcType=VARCHAR}, #{campusId,jdbcType=INTEGER}, 
-      #{coachId,jdbcType=INTEGER}, #{status,jdbcType=INTEGER})
+      #{coachId,jdbcType=INTEGER}, #{status,jdbcType=INTEGER},#{quarterId,jdbcType=INTEGER})
   </insert>
   <insert id="insertSelective" parameterType="com.explore.pojo.Student" >
     insert into student
@@ -108,6 +109,9 @@ student.`status` = 0
       <if test="status != null" >
         status,
       </if>
+    <if test="quarterId != null" >
+      quarter_id,
+    </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -133,6 +137,9 @@ student.`status` = 0
       </if>
       <if test="status != null" >
         #{status,jdbcType=INTEGER},
+      </if>
+      <if test="quarterId != null" >
+        #{quarterId,jdbcType=INTEGER},
       </if>
     </trim>
   </insert>
@@ -160,6 +167,9 @@ student.`status` = 0
       <if test="status != null" >
         status = #{status,jdbcType=INTEGER},
       </if>
+      <if test="quarterId != null" >
+        quarter_id= #{quarterId,jdbcType=INTEGER},
+      </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
@@ -171,7 +181,8 @@ student.`status` = 0
       idcard = #{idcard,jdbcType=VARCHAR},
       campus_id = #{campusId,jdbcType=INTEGER},
       coach_id = #{coachId,jdbcType=INTEGER},
-      status = #{status,jdbcType=INTEGER}
+      status = #{status,jdbcType=INTEGER},
+      quarter_id= #{quarterId,jdbcType=INTEGER}
     where id = #{id,jdbcType=INTEGER}
   </update>
 

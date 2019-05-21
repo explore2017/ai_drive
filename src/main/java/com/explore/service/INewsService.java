@@ -13,4 +13,6 @@ public interface INewsService {
     ServerResponse reviseNews(News news);
 
     ServerResponse deleteNews(Integer id);
+
+    ServerResponse searchNewType();
 }

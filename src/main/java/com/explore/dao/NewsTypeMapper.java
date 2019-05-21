@@ -2,6 +2,8 @@ package com.explore.dao;
 
 import com.explore.pojo.NewsType;
 
+import java.util.List;
+
 public interface NewsTypeMapper {
     int deleteByPrimaryKey(Long id);
 
@@ -14,4 +16,6 @@ public interface NewsTypeMapper {
     int updateByPrimaryKeySelective(NewsType record);
 
     int updateByPrimaryKey(NewsType record);
+
+    List<NewsType> searchNewType();
 }

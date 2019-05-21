@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.explore.vo.QuartersMapper" >
+  <resultMap id="BaseResultMap" type="com.explore.pojo.Quarters" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="years" property="years" jdbcType="VARCHAR" />
+    <result column="quarters" property="quarters" jdbcType="VARCHAR" />
+    <result column="plan_number" property="planNumber" jdbcType="INTEGER" />
+    <result column="describe" property="describe" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, years, quarters, plan_number, describe, status
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from quarters
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="searchNewQuarter" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+   select
+    <include refid="Base_Column_List" />
+  from quarters order by id DESC limit 1
+  </select>
+  <select id="searchAllQuarters" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select
+    <include refid="Base_Column_List" />
+    from quarters
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from quarters
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.explore.pojo.Quarters" >
+    insert into quarters (id, years, quarters, 
+      plan_number, describe, status
+      )
+    values (#{id,jdbcType=INTEGER}, #{years,jdbcType=VARCHAR}, #{quarters,jdbcType=VARCHAR}, 
+      #{planNumber,jdbcType=INTEGER}, #{describe,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.explore.pojo.Quarters" >
+    insert into quarters
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="years != null" >
+        years,
+      </if>
+      <if test="quarters != null" >
+        quarters,
+      </if>
+      <if test="planNumber != null" >
+        plan_number,
+      </if>
+      <if test="describe != null" >
+        describe,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="years != null" >
+        #{years,jdbcType=VARCHAR},
+      </if>
+      <if test="quarters != null" >
+        #{quarters,jdbcType=VARCHAR},
+      </if>
+      <if test="planNumber != null" >
+        #{planNumber,jdbcType=INTEGER},
+      </if>
+      <if test="describe != null" >
+        #{describe,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.explore.pojo.Quarters" >
+    update quarters
+    <set >
+      <if test="years != null" >
+        years = #{years,jdbcType=VARCHAR},
+      </if>
+      <if test="quarters != null" >
+        quarters = #{quarters,jdbcType=VARCHAR},
+      </if>
+      <if test="planNumber != null" >
+        plan_number = #{planNumber,jdbcType=INTEGER},
+      </if>
+      <if test="describe != null" >
+        describe = #{describe,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.explore.pojo.Quarters" >
+    update quarters
+    set years = #{years,jdbcType=VARCHAR},
+      quarters = #{quarters,jdbcType=VARCHAR},
+      plan_number = #{planNumber,jdbcType=INTEGER},
+      describe = #{describe,jdbcType=VARCHAR},
+      status = #{status,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

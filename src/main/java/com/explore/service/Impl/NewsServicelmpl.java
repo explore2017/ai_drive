@@ -64,4 +64,10 @@ public class NewsServicelmpl implements INewsService {
             return ServerResponse.createBySuccessMessage("删除成功");
         return ServerResponse.createByErrorMessage("删除失败");
     }
+
+    @Override
+    public ServerResponse searchNewType() {
+        List<NewsType> newsTypes = newsTypeMapper.searchNewType();
+        return ServerResponse.createBySuccess(newsTypes);
+    }
 }
