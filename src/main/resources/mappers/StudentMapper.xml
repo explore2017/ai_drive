@@ -26,6 +26,12 @@
     <include refid="Base_Column_List" />
     from student
   </select>
+  <select id="getQuarterStudent" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from student
+    where quarter_id = #{quarterId,jdbcType=INTEGER}
+  </select>
   <select id="getIdCard" resultMap="BaseResultMap">
     select
     <include refid="Base_Column_List" />

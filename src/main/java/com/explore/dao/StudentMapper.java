@@ -1,4 +1,5 @@
 package com.explore.dao;
+import com.explore.pojo.Quarters;
 import com.explore.pojo.Student;
 import org.apache.ibatis.annotations.Param;
 import com.explore.pojo.SubjectStudent;
@@ -34,4 +35,6 @@ public interface StudentMapper {
     Student login(@Param("idcard") String userName,@Param("password") String password);
 
     List<Student> showStudents(Student student);
+
+    List<Quarters> getQuarterStudent(Integer quarterId);
 }
