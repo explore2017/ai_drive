@@ -17,7 +17,11 @@ public class QuartersController {
      * 查看所有季度
      * @return
      */
+<<<<<<< HEAD
     @GetMapping("allQuarters")
+=======
+    @GetMapping("/allQuarters")
+>>>>>>> 7195003a9ebd3cb78945b24bdb94aaf094a48465
     public ServerResponse searchAllQuarters()
     {
         ServerResponse serverResponse = quartersService.searchAllQuarters();
@@ -28,7 +32,11 @@ public class QuartersController {
      * 查看三个季度
      * @return
      */
+<<<<<<< HEAD
     @GetMapping("threeQuarters")
+=======
+    @GetMapping("/threeQuarters")
+>>>>>>> 7195003a9ebd3cb78945b24bdb94aaf094a48465
     public  ServerResponse searchThreeQuarters()
     {
         ServerResponse serverResponse = quartersService.searchThreeQuarters();
@@ -40,7 +48,11 @@ public class QuartersController {
      * @param quarters
      * @return
      */
+<<<<<<< HEAD
     @PutMapping("reviseQuarters")
+=======
+    @PutMapping("/reviseQuarters")
+>>>>>>> 7195003a9ebd3cb78945b24bdb94aaf094a48465
     public ServerResponse reviseQuarters(@RequestBody Quarters quarters)
     {
         ServerResponse serverResponse = quartersService.reviseQuarters(quarters);

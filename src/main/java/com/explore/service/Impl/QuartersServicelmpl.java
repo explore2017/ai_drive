@@ -1,23 +1,33 @@
 package com.explore.service.Impl;
 
 import com.explore.common.ServerResponse;
+import com.explore.dao.StudentMapper;
 import com.explore.pojo.Quarters;
 import com.explore.service.IQuartersService;
 import com.explore.dao.QuartersMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.Calendar;
+<<<<<<< HEAD
 import java.util.List;
 
+=======
+import java.util.HashMap;
+import java.util.List;
+>>>>>>> 7195003a9ebd3cb78945b24bdb94aaf094a48465
 @Service
 public class QuartersServicelmpl implements IQuartersService {
 
     @Autowired
     QuartersMapper quartersMapper;
+    @Autowired
+    StudentMapper studentMapper;
 
     @Override
     public ServerResponse searchAllQuarters() {
+        List<HashMap<String,Object>> allData=new ArrayList<>();
         Calendar cal = Calendar.getInstance();
         int year = cal.get(Calendar.YEAR);
         int month = cal.get(Calendar.MONTH )+1;
@@ -33,6 +43,13 @@ public class QuartersServicelmpl implements IQuartersService {
             quartersMapper.insertSelective(quarter1);
         }
         List<Quarters> quarters = quartersMapper.searchAllQuarters();
+        for (Quarters quarter2 : quarters) {
+           int nowNumber = studentMapper.getQuarterStudent(quarter2.getId()).size();
+            HashMap<String,Object> data=new HashMap<>();
+            data.put("quarter",quarter2);
+            data.put("nowNumber",nowNumber);
+            allData.add(data);
+        }
         return ServerResponse.createBySuccess(quarters);
     }
 

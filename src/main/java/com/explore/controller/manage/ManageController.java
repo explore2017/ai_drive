@@ -55,6 +55,7 @@ public class ManageController {
 
     /**
      * 查看所有学生数据
+     * @param student
      */
     @PostMapping("/showStudents")
     public ServerResponse showStudents(@RequestBody Student student){
