@@ -2,12 +2,14 @@ package com.explore.controller.student;
 
 import com.explore.common.Const;
 import com.explore.common.LoginResponse;
+import com.explore.common.ResponseCode;
 import com.explore.common.ServerResponse;
 import com.explore.form.AddSubjectStudent;
 import com.explore.form.LoginForm;
 import com.explore.form.PasswordForm;
 import com.explore.pojo.*;
 import com.explore.service.ISubjectStudentService;
+import com.explore.service.Impl.StudentServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -67,6 +69,15 @@ public class StudentController {
         return studentService.modifyPassword(params,student.getId());
     }
 
+    @PostMapping("/sign")
+    public ServerResponse sign(@RequestBody SubjectStudent subjectStudent,HttpSession session) {
+        Student student = (Student)session.getAttribute(Const.CURRENT_USER);
+        if (student==null){
+            return ServerResponse.createByErrorCodeMessage(ResponseCode.NEED_LOGIN.getCode(),"请登录后尝试");
+        }
+        subjectStudent.setStudentId(student.getId());
+        return subjectStudentService.sign(subjectStudent);
+    }
 
     /**
      * 展现该学员个人信息(包含是否拿到驾照)
@@ -74,8 +85,7 @@ public class StudentController {
      */
     @PostMapping("/show")
     public ServerResponse showMessage(String name,String idcard) {
-        ServerResponse serverResponse = studentService.showMessage(name,idcard);
-        return serverResponse;
+        return studentService.showMessage(name,idcard);
     }
 
     /**

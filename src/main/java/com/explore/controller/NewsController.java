@@ -17,7 +17,6 @@ public class NewsController {
     @Autowired
     INewsService newsService;
 
-
     /**
      * 查看所有新闻
      * @return

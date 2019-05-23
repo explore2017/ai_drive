@@ -22,4 +22,6 @@ public interface ISubjectStudentService {
     ServerResponse deleteSubjectStudent( int id);
 
     ServerResponse showStudentExam(StudentExam studentExam);
+
+    ServerResponse sign(SubjectStudent subjectStudent);
 }

@@ -1,6 +1,7 @@
 package com.explore.service.Impl;
 
 
+import com.explore.common.Const;
 import com.explore.common.ServerResponse;
 import com.explore.dao.StudentMapper;
 import com.explore.dao.SubjectMapper;
@@ -76,6 +77,16 @@ public class SubjectStudentServiceImpl implements ISubjectStudentService {
         if(subjectStudents.size() != 0)
             return ServerResponse.createBySuccess(subjectStudents);
         return  ServerResponse.createByErrorMessage("暂时没有数据");
+    }
+
+    @Override
+    public ServerResponse sign(SubjectStudent subjectStudent) {
+        subjectStudent.setStatus(Const.ExamStatus.WAIT_CHECK_PASS);
+        int count = subjectStudentMapper.insert(subjectStudent);
+        if (count == 1){
+            return ServerResponse.createBySuccessMessage("申请发送成功，正在等待管理员同意申请");
+        }
+        return ServerResponse.createByErrorMessage("申请失败");
     }
 
     @Override

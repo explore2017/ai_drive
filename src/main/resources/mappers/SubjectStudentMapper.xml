@@ -59,8 +59,8 @@ subject_student.student_id = student.id
   </delete>
   <insert id="insert" parameterType="com.explore.pojo.SubjectStudent" >
     insert into subject_student (id, subject_id, student_id, 
-      exam_id, status, count, 
-      position, price, start_time, 
+      exam_id, status, `count`,
+      `position`, price, start_time,
       end_time)
     values (#{id,jdbcType=INTEGER}, #{subjectId,jdbcType=INTEGER}, #{studentId,jdbcType=INTEGER}, 
       #{examId,jdbcType=INTEGER}, #{status,jdbcType=INTEGER}, #{count,jdbcType=INTEGER}, 

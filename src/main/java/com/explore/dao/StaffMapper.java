@@ -3,6 +3,8 @@ package com.explore.dao;
 import com.explore.pojo.Staff;
 import org.apache.ibatis.annotations.Param;
 
+import java.util.List;
+
 public interface StaffMapper {
     int deleteByPrimaryKey(Integer id);
 
@@ -17,4 +19,6 @@ public interface StaffMapper {
     int updateByPrimaryKey(Staff record);
 
     Staff login(@Param("name") String name, @Param("password")String password);
+
+    List<Staff> selectAll();
 }
