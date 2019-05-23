@@ -10,13 +10,8 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.Calendar;
-<<<<<<< HEAD
 import java.util.List;
-
-=======
 import java.util.HashMap;
-import java.util.List;
->>>>>>> 7195003a9ebd3cb78945b24bdb94aaf094a48465
 @Service
 public class QuartersServicelmpl implements IQuartersService {
 
