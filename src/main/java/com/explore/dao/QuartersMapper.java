@@ -1,6 +1,7 @@
 package com.explore.dao;
 
 import com.explore.pojo.Quarters;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -22,4 +23,6 @@ public interface QuartersMapper {
     Quarters searchNewQuarter();
 
     List<Quarters> searchThreeQuarters();
+
+    Quarters selectByYearsAndQuarters(@Param("years") int years,@Param("quarters") int quarters);
 }

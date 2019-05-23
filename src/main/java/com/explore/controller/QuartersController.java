@@ -20,8 +20,7 @@ public class QuartersController {
     @GetMapping("/allQuarters")
     public ServerResponse searchAllQuarters()
     {
-        ServerResponse serverResponse = quartersService.searchAllQuarters();
-        return  serverResponse;
+        return  quartersService.searchAllQuarters();
     }
 
     /**
@@ -32,8 +31,7 @@ public class QuartersController {
     @GetMapping("/threeQuarters")
     public  ServerResponse searchThreeQuarters()
     {
-        ServerResponse serverResponse = quartersService.searchThreeQuarters();
-        return serverResponse;
+        return quartersService.searchThreeQuarters();
     }
 
     /**
@@ -44,7 +42,6 @@ public class QuartersController {
     @PutMapping("/reviseQuarters")
     public ServerResponse reviseQuarters(@RequestBody Quarters quarters)
     {
-        ServerResponse serverResponse = quartersService.reviseQuarters(quarters);
-        return serverResponse;
+        return quartersService.reviseQuarters(quarters);
     }
 }
