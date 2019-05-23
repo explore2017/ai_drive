@@ -75,4 +75,9 @@ public class VehicleServiceImpl implements IVehicleService {
             return ServerResponse.createBySuccessMessage("删除车辆成功");
         return ServerResponse.createByErrorMessage("删除车辆失败");
     }
+
+    @Override
+    public Integer allCount() {
+        return vehicleMapper.selectAllCount();
+    }
 }

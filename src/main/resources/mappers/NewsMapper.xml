@@ -14,7 +14,7 @@
     <result column="content" property="content" jdbcType="LONGVARCHAR" />
   </resultMap>
   <sql id="Base_Column_List" >
-    id, title, type_id, info, create_time, update_time, status
+    id, title, type_id, info, create_time, update_time, status,content
   </sql>
   <sql id="Blob_Column_List" >
     content
@@ -25,16 +25,16 @@
     from news
     where id = #{id,jdbcType=BIGINT}
   </select>
-  <select id="searchType" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Long" >
+  <select id="searchType" resultMap="ResultMapWithBLOBs"  >
     select
     <include refid="Base_Column_List" />
     from news
-    where type_id = #{typeId,jdbcType=INTEGER}
+    where type_id = #{typeId,jdbcType=INTEGER} order by id desc
   </select>
   <select id="searchAllNews" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Long" >
     select
     <include refid="Base_Column_List" />
-    from news
+    from news order by id desc
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
     delete from news

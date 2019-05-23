@@ -23,15 +23,18 @@
   <select id="getAllCoach" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select
     <include refid="Base_Column_List" />
-    from coach
+    from coach order by id desc
   </select>
   <select id="searchCoachesCampus" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select
     <include refid="Base_Column_List" />
     from coach
-    where campus_id =  #{campusId,jdbcType=INTEGER}
+    where campus_id =  #{campusId,jdbcType=INTEGER} order by id desc
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    <select id="selectAllCount" resultType="java.lang.Integer">
+      select count(id) from coach
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from coach
     where id = #{id,jdbcType=INTEGER}
   </delete>

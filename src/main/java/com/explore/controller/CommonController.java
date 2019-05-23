@@ -5,9 +5,12 @@ import com.explore.common.ServerResponse;
 import com.explore.pojo.Manage;
 import com.explore.pojo.Staff;
 import com.explore.pojo.Student;
+import com.explore.service.*;
 import org.apache.catalina.Server;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpSession;
@@ -21,6 +24,22 @@ import java.util.Map;
 @RestController
 public class CommonController {
 
+    @Autowired
+    private IStudentService studentService;
+    @Autowired
+    private ICoachService coachService;
+    @Autowired
+    private IVehicleService vehicleService;
+    @Autowired
+    private ISourceService sourceService;
+    @Autowired
+    private ICampusService campusService;
+
+    /**
+     * 获取当前用户
+     * @param session
+     * @return
+     */
     @GetMapping("/fetchCurrent")
     public Map fetchCurrent(HttpSession session){
         String qqAvatar = "http://q1.qlogo.cn/g?b=qq&nk=2312333700&s=100";
@@ -42,5 +61,20 @@ public class CommonController {
         }
         map.put("avatar",qqAvatar);
         return map;
+    }
+
+    /**
+     * 统计
+     * @return
+     */
+    @GetMapping("/count")
+    public ServerResponse count(){
+        Map<String,Integer> map = new HashMap<>(10);
+        map.put("student",studentService.allCount());
+        map.put("coach",coachService.allCount());
+        map.put("campus",campusService.allCount());
+        map.put("source",sourceService.allCount());
+        map.put("vehicle",vehicleService.allCount());
+        return ServerResponse.createBySuccess(map);
     }
 }

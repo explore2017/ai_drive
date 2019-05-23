@@ -20,4 +20,6 @@ public interface ICampusService {
     ServerResponse addCampus(Campus campus);
 
     ServerResponse reviseCampus(Campus campus);
+
+    Integer allCount();
 }

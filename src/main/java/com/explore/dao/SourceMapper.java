@@ -20,4 +20,6 @@ public interface SourceMapper {
     List<Source> showSources();
 
     List<Source> showSource(Source source);
+
+    Integer selectAllCount();
 }

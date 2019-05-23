@@ -20,4 +20,6 @@ public interface CoachMapper {
     List<Coach> getAllCoach();
 
     List<Coach> searchCoachesCampus(Integer campusId);
+
+    Integer selectAllCount();
 }

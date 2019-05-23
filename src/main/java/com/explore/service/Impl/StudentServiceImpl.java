@@ -113,4 +113,9 @@ public class StudentServiceImpl implements IStudentService {
         return ServerResponse.createByErrorMessage("修改失败");
     }
 
+    @Override
+    public Integer allCount() {
+        return studentMapper.selectAllCount();
+    }
+
 }

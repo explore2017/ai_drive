@@ -78,4 +78,9 @@ public class SourceServiceImpl implements ISourceService {
         }
         return ServerResponse.createBySuccess(allData);
     }
+
+    @Override
+    public Integer allCount() {
+        return sourceMapper.selectAllCount();
+    }
 }

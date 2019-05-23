@@ -84,4 +84,9 @@ public class CampusServiceImpl implements ICampusService {
             return ServerResponse.createBySuccessMessage("修改成功");
         return ServerResponse.createByErrorMessage("修改失败");
     }
+
+    @Override
+    public Integer allCount() {
+        return campusMapper.selectAllCount();
+    }
 }

@@ -73,7 +73,15 @@ public class NewsServicelmpl implements INewsService {
 
     @Override
     public ServerResponse searchType(Integer typeId) {
+        List<HashMap<String,Object>>  allData=new ArrayList<>();
         List<News> news = newsMapper.searchType(typeId);
-        return ServerResponse.createBySuccess(news);
+        for(int i=0;i<news.size();i++){
+            NewsType newsType = newsTypeMapper.selectByPrimaryKey((long)news.get(i).getTypeId());
+            HashMap<String,Object> data=new HashMap<>();
+            data.put("news",news.get(i));
+            data.put("newsType",newsType);
+            allData.add(data);
+        }
+        return ServerResponse.createBySuccess(allData);
     }
 }

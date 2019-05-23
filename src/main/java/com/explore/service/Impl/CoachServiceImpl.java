@@ -59,4 +59,9 @@ public class CoachServiceImpl implements ICoachService {
         }
         return ServerResponse.createBySuccess(allData);
     }
+
+    @Override
+    public Integer allCount() {
+        return coachMapper.selectAllCount();
+    }
 }

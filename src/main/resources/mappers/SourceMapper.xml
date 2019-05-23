@@ -22,7 +22,7 @@
   <select id="showSources" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select
     <include refid="Base_Column_List" />
-    from source
+    from source order by id desc
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from source
@@ -131,4 +131,7 @@
       </if>
     </where>
   </select>
+    <select id="selectAllCount" resultType="java.lang.Integer">
+      select count(id) from source
+    </select>
 </mapper>

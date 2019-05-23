@@ -16,4 +16,6 @@ public interface ISourceService {
     ServerResponse deleteSource(Integer id);
 
     ServerResponse showSource(Source source);
+
+    Integer allCount();
 }

@@ -37,4 +37,6 @@ public interface StudentMapper {
     List<Student> showStudents(Student student);
 
     List<Quarters> getQuarterStudent(Integer quarterId);
+
+    Integer selectAllCount();
 }

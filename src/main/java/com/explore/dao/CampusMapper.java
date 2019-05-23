@@ -18,4 +18,6 @@ public interface CampusMapper {
     int updateByPrimaryKey(Campus record);
 
     List<Campus> getAllCampus();
+
+    Integer selectAllCount();
 }

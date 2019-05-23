@@ -26,4 +26,6 @@ public interface IStudentService {
     ServerResponse modify(Student modify);
 
     ServerResponse modifyPassword(PasswordForm params, Integer id);
+
+    Integer allCount();
 }

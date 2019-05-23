@@ -9,7 +9,7 @@
     <result column="organ_id" property="organId" jdbcType="INTEGER" />
   </resultMap>
   <sql id="Base_Column_List" >
-    id, name, info, position, organ_id
+    id, `name`, info, `position`, organ_id
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
@@ -20,7 +20,10 @@
   <select id="getAllCampus" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select
     <include refid="Base_Column_List" />
-    from campus
+    from campus order by id desc
+  </select>
+  <select id="selectAllCount" resultType="java.lang.Integer">
+    select count(id) from campus
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from campus

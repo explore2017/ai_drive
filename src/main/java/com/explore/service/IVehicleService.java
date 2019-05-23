@@ -14,4 +14,6 @@ public interface IVehicleService {
     ServerResponse reviseVehicle(Vehicle vehicle);
 
     ServerResponse deleteVehicle(Integer id);
+
+    Integer allCount();
 }

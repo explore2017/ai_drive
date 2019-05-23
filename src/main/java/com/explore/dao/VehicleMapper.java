@@ -20,4 +20,6 @@ public interface VehicleMapper {
     List<Vehicle> searchVehiclesCampus(Integer compusId);
 
     List<Vehicle> showVehicles();
+
+    Integer selectAllCount();
 }

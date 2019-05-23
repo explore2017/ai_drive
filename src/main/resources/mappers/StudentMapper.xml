@@ -24,37 +24,37 @@
   <select id="getAllStudent" resultMap="BaseResultMap">
     select
     <include refid="Base_Column_List" />
-    from student
+    from student order by id desc
   </select>
   <select id="getQuarterStudent" resultMap="BaseResultMap">
     select
     <include refid="Base_Column_List" />
     from student
-    where quarter_id = #{quarterId,jdbcType=INTEGER}
+    where quarter_id = #{quarterId,jdbcType=INTEGER} order by id desc
   </select>
   <select id="getIdCard" resultMap="BaseResultMap">
     select
     <include refid="Base_Column_List" />
     from student
-    where idcard = #{idcard,jdbcType=VARCHAR}
+    where idcard = #{idcard,jdbcType=VARCHAR} order by id desc
   </select>
   <select id="showMessage" resultMap="BaseResultMap">
     select
     <include refid="Base_Column_List" />
     from student
-    where name = #{name,jdbcType=VARCHAR} and  idcard = #{idcard,jdbcType=VARCHAR}
+    where name = #{name,jdbcType=VARCHAR} and  idcard = #{idcard,jdbcType=VARCHAR} order by id desc
   </select>
   <select id="showStudent" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select
     <include refid="Base_Column_List" />
     from student
-    where coach_id = #{coachId,jdbcType=INTEGER} and status = 0
+    where coach_id = #{coachId,jdbcType=INTEGER} and status = 0 order by id desc
   </select>
   <select id="searchStudentCampus" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select
     <include refid="Base_Column_List" />
     from student
-    where campus_id = #{campusId,jdbcType=INTEGER}
+    where campus_id = #{campusId,jdbcType=INTEGER} order by id desc
   </select>
   <select id="searchSubjectStudent" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
 SELECT
@@ -215,4 +215,7 @@ student.`status` = 0
       </if>
     </where>
   </select>
+    <select id="selectAllCount" resultType="java.lang.Integer">
+      select count(id) from student
+    </select>
 </mapper>
