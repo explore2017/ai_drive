@@ -64,4 +64,9 @@ public class CoachServiceImpl implements ICoachService {
     public Integer allCount() {
         return coachMapper.selectAllCount();
     }
+
+    @Override
+    public Coach findById(Integer coachId) {
+        return coachMapper.selectByPrimaryKey(coachId);
+    }
 }

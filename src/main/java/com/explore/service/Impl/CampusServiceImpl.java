@@ -89,4 +89,9 @@ public class CampusServiceImpl implements ICampusService {
     public Integer allCount() {
         return campusMapper.selectAllCount();
     }
+
+    @Override
+    public Campus findById(Integer campusId) {
+        return campusMapper.selectByPrimaryKey(campusId);
+    }
 }

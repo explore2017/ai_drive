@@ -79,6 +79,26 @@ public class StudentController {
         return subjectStudentService.sign(subjectStudent);
     }
 
+    @GetMapping("/exam")
+    public ServerResponse exam(HttpSession session) {
+        Object object = session.getAttribute(Const.CURRENT_USER);
+        if (object==null){
+            return ServerResponse.needLogin();
+        }
+        Student student = (Student) object;
+        return subjectStudentService.findByStudentId(student.getId());
+    }
+
+    @PutMapping("/exam/cancel/{id}")
+    public ServerResponse cancel(@PathVariable("id")Integer id,HttpSession session) {
+        Object object = session.getAttribute(Const.CURRENT_USER);
+        if (object==null){
+            return ServerResponse.needLogin();
+        }
+        Student student = (Student) object;
+        return subjectStudentService.cancel(student.getId(),id);
+    }
+
     /**
      * 展现该学员个人信息(包含是否拿到驾照)
      * @return
@@ -111,6 +131,9 @@ public class StudentController {
             return ServerResponse.needLogin();
         }
         Student student = (Student) object;
+        if(student.getCoachId()!=null){
+            return ServerResponse.createByErrorMessage("选择失败，您已经选择过教练了,如需重新选择，请联系工作人员。");
+        }
         return studentService.addCoach(student,coach);
     }
 

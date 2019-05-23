@@ -22,4 +22,6 @@ public interface ICampusService {
     ServerResponse reviseCampus(Campus campus);
 
     Integer allCount();
+
+    Campus findById(Integer campusId);
 }

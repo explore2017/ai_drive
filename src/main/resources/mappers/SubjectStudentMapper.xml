@@ -53,10 +53,18 @@ WHERE
 student.campus_id = #{campusId,jdbcType=INTEGER} AND
 subject_student.student_id = student.id
   </select>
+  <select id="selectByStudentId" resultType="com.explore.pojo.SubjectStudent">
+    select
+    <include refid="Base_Column_List" />
+    from subject_student where student_id = #{id} order by id desc
+  </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from subject_student
     where id = #{id,jdbcType=INTEGER}
   </delete>
+  <update id="cancel">
+    update subject_student set status = 5 where id = #{id} and student_id = #{studentId}
+  </update>
   <insert id="insert" parameterType="com.explore.pojo.SubjectStudent" >
     insert into subject_student (id, subject_id, student_id, 
       exam_id, status, `count`,

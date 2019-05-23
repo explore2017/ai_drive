@@ -13,4 +13,6 @@ public interface ICoachService {
     ServerResponse searchSubjectStudent(Integer coachId);
 
     Integer allCount();
+
+    Coach findById(Integer coachId);
 }

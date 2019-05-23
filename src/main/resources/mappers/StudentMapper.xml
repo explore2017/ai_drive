@@ -13,7 +13,7 @@
     <result column="quarter_id" property="quarterId" jdbcType="INTEGER" />
   </resultMap>
   <sql id="Base_Column_List" >
-    id, name, sex, phone, idcard, campus_id, coach_id, status,quarter_id
+    id, name, sex, phone, idcard, campus_id, coach_id, status,quarter_id, password
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 

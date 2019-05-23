@@ -19,6 +19,7 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class SubjectStudentServiceImpl implements ISubjectStudentService {
@@ -87,6 +88,28 @@ public class SubjectStudentServiceImpl implements ISubjectStudentService {
             return ServerResponse.createBySuccessMessage("申请发送成功，正在等待管理员同意申请");
         }
         return ServerResponse.createByErrorMessage("申请失败");
+    }
+
+    @Override
+    public ServerResponse findByStudentId(Integer id) {
+        List<SubjectStudent> list =  subjectStudentMapper.selectByStudentId(id);
+        List<Map<String,Object>> ret = new ArrayList<>();
+        for (SubjectStudent subjectStudent : list) {
+            Map<String,Object> map = new HashMap<>();
+            map.put("subjectStudent",subjectStudent);
+            map.put("subject",subjectMapper.selectByPrimaryKey(subjectStudent.getSubjectId()));
+            ret.add(map);
+        }
+        return ServerResponse.createBySuccess(ret);
+    }
+
+    @Override
+    public ServerResponse cancel(Integer studentId, Integer sbId) {
+        int count = subjectStudentMapper.cancel(studentId,sbId);
+        if (count==1){
+            return ServerResponse.createBySuccessMessage("取消成功");
+        }
+        return ServerResponse.createByErrorMessage("取消失败");
     }
 
     @Override

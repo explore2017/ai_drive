@@ -55,9 +55,13 @@ public class CommonController {
             map.put("entity",staff);
         }else if (attribute instanceof Student){
             Student student = (Student) attribute;
+            Map<String,Object> ret = new HashMap<>();
+            ret.put("coach",coachService.findById(student.getCoachId()));
+            ret.put("campus",campusService.findById(student.getCampusId()));
             map.put("name",student.getName());
             map.put("type","student");
             map.put("entity",student);
+            map.put("entityMore",ret);
         }
         map.put("avatar",qqAvatar);
         return map;

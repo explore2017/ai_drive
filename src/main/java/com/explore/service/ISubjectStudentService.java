@@ -24,4 +24,8 @@ public interface ISubjectStudentService {
     ServerResponse showStudentExam(StudentExam studentExam);
 
     ServerResponse sign(SubjectStudent subjectStudent);
+
+    ServerResponse findByStudentId(Integer id);
+
+    ServerResponse cancel(Integer studentId, Integer sbId);
 }
