@@ -24,8 +24,7 @@ public class NewsController {
     @GetMapping("/searchAllNews")
     public ServerResponse searchAllNews()
     {
-        ServerResponse serverResponse = newsService.searchAllNews();
-        return  serverResponse;
+        return newsService.searchAllNews();
     }
     /**
      * 查看所有新闻类型
@@ -34,8 +33,7 @@ public class NewsController {
     @GetMapping("/searchNewType")
     public ServerResponse searchNewType()
     {
-        ServerResponse serverResponse =newsService.searchNewType();
-        return serverResponse;
+        return newsService.searchNewType();
     }
 
     /**
@@ -46,8 +44,7 @@ public class NewsController {
     @GetMapping("/allType")
     public ServerResponse searchType(Integer typeId)
     {
-        ServerResponse serverResponse =newsService.searchType(typeId);
-        return serverResponse;
+        return newsService.searchType(typeId);
     }
 
     /**
@@ -56,8 +53,7 @@ public class NewsController {
      */
     @PostMapping("/addNews")
     public ServerResponse addNews(@RequestBody News news) {
-        ServerResponse serverResponse = newsService.addNews(news);
-        return serverResponse;
+        return newsService.addNews(news);
     }
 
     /**
@@ -66,8 +62,7 @@ public class NewsController {
      */
     @PutMapping("/reviseNews")
     public ServerResponse reviseNews(@RequestBody News news) {
-        ServerResponse serverResponse = newsService.reviseNews(news);
-        return serverResponse;
+        return newsService.reviseNews(news);
     }
 
     /**
@@ -76,7 +71,6 @@ public class NewsController {
      */
     @DeleteMapping("/deleteNews/{id}")
     public ServerResponse deleteNews(@PathVariable("id") Integer id) {
-        ServerResponse serverResponse =newsService.deleteNews(id);
-        return serverResponse;
+        return newsService.deleteNews(id);
     }
 }

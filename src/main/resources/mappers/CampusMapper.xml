@@ -29,7 +29,7 @@
     delete from campus
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="com.explore.pojo.Campus" >
+  <insert id="insert"  parameterType="com.explore.pojo.Campus" >
     insert into campus (id, name, info, 
       position, organ_id)
     values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{info,jdbcType=VARCHAR}, 

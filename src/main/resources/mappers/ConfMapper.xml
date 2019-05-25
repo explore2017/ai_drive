@@ -117,4 +117,7 @@
       update_time = #{updateTime,jdbcType=TIMESTAMP}
     where id = #{id,jdbcType=INTEGER}
   </update>
+    <update id="updateByCodeAndCampusId" parameterType="map">
+      update conf set max_count = #{max} where campus_id = #{campusId} and conf_type = #{code}
+    </update>
 </mapper>

@@ -6,11 +6,13 @@ import com.explore.pojo.*;
 import com.explore.service.ICampusService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+@Transactional
 @Service
 public class CampusServiceImpl implements ICampusService {
 
@@ -71,9 +73,10 @@ public class CampusServiceImpl implements ICampusService {
 
     @Override
     public ServerResponse addCampus(Campus campus) {
-        int count = campusMapper.insertSelective(campus);
-        if(count ==1)
+        int count = campusMapper.insert(campus);
+        if(count ==1){
             return ServerResponse.createBySuccessMessage("增加成功");
+        }
         return ServerResponse.createByErrorMessage("增加失败");
     }
 

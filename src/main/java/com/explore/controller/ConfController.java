@@ -3,6 +3,7 @@ package com.explore.controller;
 import com.explore.common.ServerResponse;
 import com.explore.pojo.Conf;
 import com.explore.service.IConfService;
+import com.explore.vo.ConfVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -35,6 +36,11 @@ public class ConfController {
     @PutMapping("/")
     public ServerResponse update(@RequestBody Conf conf){
         return confService.update(conf);
+    }
+
+    @PutMapping("/update")
+    public ServerResponse updateByCodeAndCampusId(@RequestBody ConfVo confVo){
+        return confService.updateByCodeAndCampusId(confVo);
     }
 
     @DeleteMapping("/{id}")

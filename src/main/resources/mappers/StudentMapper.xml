@@ -13,7 +13,7 @@
     <result column="quarter_id" property="quarterId" jdbcType="INTEGER" />
   </resultMap>
   <sql id="Base_Column_List" >
-    id, name, sex, phone, idcard, campus_id, coach_id, status,quarter_id, password
+    id, `name`, sex, phone, idcard, campus_id, coach_id, status,quarter_id, password
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
@@ -224,4 +224,10 @@ student.`status` = 0
     <select id="selectAllCountByCampusId" resultType="java.lang.Integer">
       select count(id) from student where campus_id = #{id}
     </select>
+  <select id="getiIdCard" resultType="com.explore.pojo.Student">
+    select
+    <include refid="Base_Column_List" />
+    from student
+    where idcard = #{idcard}
+  </select>
 </mapper>

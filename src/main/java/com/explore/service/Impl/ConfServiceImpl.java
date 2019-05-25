@@ -79,14 +79,26 @@ public class ConfServiceImpl implements IConfService {
             ConfVo confVo1 = new ConfVo();
             confVo1.setCode(Const.CONF_TYPE.VEHICLE.getCode());
             confVo1.setDesc(Const.CONF_TYPE.VEHICLE.getDesc());
-            confVo1.setMax(confMapper.selectMaxCountByTypeAndCampusId(campus.getId(),Const.CONF_TYPE.VEHICLE.getCode()));
+            Integer max = confMapper.selectMaxCountByTypeAndCampusId(campus.getId(),Const.CONF_TYPE.VEHICLE.getCode());
+            //为空插入
+            if (max==null){
+                insertDefaultConf(Const.CONF_TYPE.VEHICLE.getCode(),campus.getId());
+                max = 50;
+            }
+            confVo1.setMax(max);
             confVo1.setCurrent(vehicleMapper.selectAllCountByCampusId(campus.getId()));
             confVos.add(confVo1);
             //设置资源
             ConfVo confVo2 = new ConfVo();
             confVo2.setCode(Const.CONF_TYPE.SOURCE.getCode());
             confVo2.setDesc(Const.CONF_TYPE.SOURCE.getDesc());
-            confVo2.setMax(confMapper.selectMaxCountByTypeAndCampusId(campus.getId(),Const.CONF_TYPE.SOURCE.getCode()));
+            Integer max2 = confMapper.selectMaxCountByTypeAndCampusId(campus.getId(),Const.CONF_TYPE.SOURCE.getCode());
+            //为空插入
+            if (max2==null){
+                insertDefaultConf(Const.CONF_TYPE.SOURCE.getCode(),campus.getId());
+                max2 = 50;
+            }
+            confVo2.setMax(max2);
             confVo2.setCurrent(sourceMapper.selectAllCountByCampusId(campus.getId()));
             confVos.add(confVo2);
 
@@ -110,21 +122,39 @@ public class ConfServiceImpl implements IConfService {
             ConfVo confVo1 = new ConfVo();
             confVo1.setCode(Const.CONF_TYPE.STAFF.getCode());
             confVo1.setDesc(Const.CONF_TYPE.STAFF.getDesc());
-            confVo1.setMax(confMapper.selectMaxCountByTypeAndCampusId(campus.getId(),Const.CONF_TYPE.STAFF.getCode()));
+            Integer max = confMapper.selectMaxCountByTypeAndCampusId(campus.getId(),Const.CONF_TYPE.STAFF.getCode());
+            //为空插入
+            if (max==null){
+                insertDefaultConf(Const.CONF_TYPE.STAFF.getCode(),campus.getId());
+                max = 50;
+            }
+            confVo1.setMax(max);
             confVo1.setCurrent(staffMapper.selectAllCountByCampusId(campus.getId()));
             confVos.add(confVo1);
             //设置教练
             ConfVo confVo2 = new ConfVo();
             confVo2.setCode(Const.CONF_TYPE.COACH.getCode());
             confVo2.setDesc(Const.CONF_TYPE.COACH.getDesc());
-            confVo2.setMax(confMapper.selectMaxCountByTypeAndCampusId(campus.getId(),Const.CONF_TYPE.COACH.getCode()));
+            Integer max2 = confMapper.selectMaxCountByTypeAndCampusId(campus.getId(),Const.CONF_TYPE.COACH.getCode());
+            //为空插入
+            if (max2==null){
+                insertDefaultConf(Const.CONF_TYPE.COACH.getCode(),campus.getId());
+                max2 = 50;
+            }
+            confVo2.setMax(max2);
             confVo2.setCurrent(coachMapper.selectAllCountByCampusId(campus.getId()));
             confVos.add(confVo2);
             //设置学员
             ConfVo confVo3 = new ConfVo();
             confVo3.setCode(Const.CONF_TYPE.STUDENT.getCode());
             confVo3.setDesc(Const.CONF_TYPE.STUDENT.getDesc());
-            confVo3.setMax(confMapper.selectMaxCountByTypeAndCampusId(campus.getId(),Const.CONF_TYPE.STUDENT.getCode()));
+            Integer max3 = confMapper.selectMaxCountByTypeAndCampusId(campus.getId(),Const.CONF_TYPE.STUDENT.getCode());
+            //为空插入
+            if (max3==null){
+                insertDefaultConf(Const.CONF_TYPE.STUDENT.getCode(),campus.getId());
+                max3 = 50;
+            }
+            confVo3.setMax(max3);
             confVo3.setCurrent(studentMapper.selectAllCountByCampusId(campus.getId()));
             confVos.add(confVo3);
 
@@ -135,5 +165,24 @@ public class ConfServiceImpl implements IConfService {
         }
         confResponse.setCampusVos(campusVos);
         return ServerResponse.createBySuccess(confResponse);
+    }
+
+    @Override
+    public ServerResponse updateByCodeAndCampusId(ConfVo confVo) {
+        int count = confMapper.updateByCodeAndCampusId(confVo);
+        if (count==1){
+            return ServerResponse.createBySuccessMessage("更新成功");
+        }
+        return ServerResponse.createByErrorMessage("更新失败");
+    }
+
+    private void insertDefaultConf(int code,int campusId){
+        Conf conf = new Conf();
+        conf.setCampusId(campusId);
+        conf.setConfType(code);
+        conf.setMaxCount(50);
+        conf.setCreateTime(new Date());
+        conf.setUpdateTime(new Date());
+        confMapper.insert(conf);
     }
 }

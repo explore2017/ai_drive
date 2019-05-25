@@ -12,4 +12,5 @@ public class ConfVo{
     private Integer code;
     private Integer max;
     private Integer current;
+    private Integer campusId;
 }

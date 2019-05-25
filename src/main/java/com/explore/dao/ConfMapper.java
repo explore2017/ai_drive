@@ -1,6 +1,7 @@
 package com.explore.dao;
 
 import com.explore.pojo.Conf;
+import com.explore.vo.ConfVo;
 import org.apache.ibatis.annotations.Param;
 
 public interface ConfMapper {
@@ -18,4 +19,5 @@ public interface ConfMapper {
 
     Integer selectMaxCountByTypeAndCampusId(@Param("id") Integer id, @Param("type") int code);
 
+    Integer updateByCodeAndCampusId(ConfVo confVo);
 }
