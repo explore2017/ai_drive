@@ -1,6 +1,7 @@
 package com.explore.dao;
 
 import com.explore.pojo.Campus;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -20,4 +21,5 @@ public interface CampusMapper {
     List<Campus> getAllCampus();
 
     Integer selectAllCount();
+
 }

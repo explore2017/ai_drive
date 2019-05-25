@@ -221,4 +221,7 @@ student.`status` = 0
   <select id="selectCountByQuarterId" resultType="java.lang.Integer">
     select count(id) from student where quarter_id = #{id}
   </select>
+    <select id="selectAllCountByCampusId" resultType="java.lang.Integer">
+      select count(id) from student where campus_id = #{id}
+    </select>
 </mapper>

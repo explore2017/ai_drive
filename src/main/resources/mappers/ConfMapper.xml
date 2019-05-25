@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.explore.dao.ConfMapper" >
+  <resultMap id="BaseResultMap" type="com.explore.pojo.Conf" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="campus_id" property="campusId" jdbcType="INTEGER" />
+    <result column="conf_type" property="confType" jdbcType="INTEGER" />
+    <result column="max_count" property="maxCount" jdbcType="INTEGER" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, campus_id, conf_type, max_count, remark, create_time, update_time
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from conf
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+    <select id="selectMaxCountByTypeAndCampusId" resultType="java.lang.Integer">
+      select max_count from conf where campus_id = #{id} and conf_type = #{type}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from conf
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.explore.pojo.Conf" >
+    insert into conf (id, campus_id, conf_type, 
+      max_count, remark, create_time, 
+      update_time)
+    values (#{id,jdbcType=INTEGER}, #{campusId,jdbcType=INTEGER}, #{confType,jdbcType=INTEGER}, 
+      #{maxCount,jdbcType=INTEGER}, #{remark,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{updateTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.explore.pojo.Conf" >
+    insert into conf
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="campusId != null" >
+        campus_id,
+      </if>
+      <if test="confType != null" >
+        conf_type,
+      </if>
+      <if test="maxCount != null" >
+        max_count,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="campusId != null" >
+        #{campusId,jdbcType=INTEGER},
+      </if>
+      <if test="confType != null" >
+        #{confType,jdbcType=INTEGER},
+      </if>
+      <if test="maxCount != null" >
+        #{maxCount,jdbcType=INTEGER},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.explore.pojo.Conf" >
+    update conf
+    <set >
+      <if test="campusId != null" >
+        campus_id = #{campusId,jdbcType=INTEGER},
+      </if>
+      <if test="confType != null" >
+        conf_type = #{confType,jdbcType=INTEGER},
+      </if>
+      <if test="maxCount != null" >
+        max_count = #{maxCount,jdbcType=INTEGER},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.explore.pojo.Conf" >
+    update conf
+    set campus_id = #{campusId,jdbcType=INTEGER},
+      conf_type = #{confType,jdbcType=INTEGER},
+      max_count = #{maxCount,jdbcType=INTEGER},
+      remark = #{remark,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

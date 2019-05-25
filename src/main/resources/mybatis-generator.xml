@@ -37,7 +37,7 @@
         </sqlMapGenerator>
 
         <!-- 指定dao接口生成的位置 也就是mapper接口生成的位置 -->
-        <javaClientGenerator type="XMLMAPPER" targetPackage="com.explore.vo"  targetProject=".\src\main\java">
+        <javaClientGenerator type="XMLMAPPER" targetPackage="com.explore.dao"  targetProject=".\src\main\java">
             <property name="enableSubPackages" value="true" />
         </javaClientGenerator>
 
@@ -51,7 +51,8 @@
 
 
         <!--<table tableName="source" domainObjectName="Source" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false" />-->
-        <table tableName="quarters" domainObjectName="Quarters" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false" />
+        <!--<table tableName="quarters" domainObjectName="Quarters" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false" />-->
+        <!--<table tableName="conf" domainObjectName="Conf" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false" />-->
 
 
 

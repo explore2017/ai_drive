@@ -41,4 +41,6 @@ public interface StudentMapper {
     Integer selectAllCount();
 
     Integer selectCountByQuarterId(Integer id);
+
+    Integer selectAllCountByCampusId(Integer id);
 }

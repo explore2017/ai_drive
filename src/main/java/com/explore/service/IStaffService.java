@@ -14,4 +14,6 @@ public interface IStaffService {
     ServerResponse save(Staff staff);
 
     ServerResponse modify(Staff staff);
+
+    Integer allCount();
 }

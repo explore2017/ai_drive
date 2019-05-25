@@ -22,4 +22,6 @@ public interface CoachMapper {
     List<Coach> searchCoachesCampus(Integer campusId);
 
     Integer selectAllCount();
+
+    Integer  selectAllCountByCampusId(Integer id);
 }

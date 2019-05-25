@@ -34,6 +34,8 @@ public class CommonController {
     private ISourceService sourceService;
     @Autowired
     private ICampusService campusService;
+    @Autowired
+    private IStaffService staffService;
 
     /**
      * 获取当前用户
@@ -79,6 +81,7 @@ public class CommonController {
         map.put("campus",campusService.allCount());
         map.put("source",sourceService.allCount());
         map.put("vehicle",vehicleService.allCount());
+        map.put("staff",staffService.allCount());
         return ServerResponse.createBySuccess(map);
     }
 }

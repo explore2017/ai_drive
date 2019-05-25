@@ -61,4 +61,9 @@ public class StaffServiceImpl implements IStaffService {
         staffMapper.updateByPrimaryKeySelective(staff);
         return ServerResponse.createBySuccessMessage("更新成功");
     }
+
+    @Override
+    public Integer allCount() {
+        return staffMapper.selectAllCount();
+    }
 }

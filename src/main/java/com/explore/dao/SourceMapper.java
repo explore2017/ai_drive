@@ -22,4 +22,6 @@ public interface SourceMapper {
     List<Source> showSource(Source source);
 
     Integer selectAllCount();
+
+    Integer selectAllCountByCampusId(Integer id);
 }

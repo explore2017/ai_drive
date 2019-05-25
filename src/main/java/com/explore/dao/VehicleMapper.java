@@ -22,4 +22,6 @@ public interface VehicleMapper {
     List<Vehicle> showVehicles();
 
     Integer selectAllCount();
+
+    Integer selectAllCountByCampusId(Integer id);
 }

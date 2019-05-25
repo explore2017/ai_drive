@@ -34,6 +34,9 @@
     <select id="selectAllCount" resultType="java.lang.Integer">
       select count(id) from coach
     </select>
+    <select id="selectAllCountByCampusId" resultType="java.lang.Integer">
+      select count(id) from coach where campus_id = #{id}
+    </select>
     <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from coach
     where id = #{id,jdbcType=INTEGER}

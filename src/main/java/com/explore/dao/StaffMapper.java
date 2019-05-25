@@ -21,4 +21,8 @@ public interface StaffMapper {
     Staff login(@Param("name") String name, @Param("password")String password);
 
     List<Staff> selectAll();
+
+    Integer selectAllCountByCampusId(Integer id);
+
+    Integer selectAllCount();
 }
