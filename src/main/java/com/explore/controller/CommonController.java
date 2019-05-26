@@ -2,6 +2,7 @@ package com.explore.controller;
 
 import com.explore.common.Const;
 import com.explore.common.ServerResponse;
+import com.explore.common.UnAuthorizedException;
 import com.explore.pojo.Manage;
 import com.explore.pojo.Staff;
 import com.explore.pojo.Student;
@@ -43,12 +44,12 @@ public class CommonController {
      * @return
      */
     @GetMapping("/fetchCurrent")
-    public Map fetchCurrent(HttpSession session){
+    public Map fetchCurrent(HttpSession session) throws UnAuthorizedException {
         String qqAvatar = "http://q1.qlogo.cn/g?b=qq&nk=2312333700&s=100";
         Object attribute = session.getAttribute(Const.CURRENT_USER);
         Map<String,Object> map = new HashMap<>(3);
         if (attribute==null){
-            return null;
+            throw new UnAuthorizedException();
         }
         if (attribute instanceof Staff){
             Staff staff = (Staff) attribute;
