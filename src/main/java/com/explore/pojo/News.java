@@ -1,5 +1,7 @@
 package com.explore.pojo;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import java.util.Date;
 
 public class News {
@@ -11,6 +13,7 @@ public class News {
 
     private String info;
 
+    @JsonFormat(timezone = "GMT+8", pattern = "yyyy-MM-dd")
     private Date createTime;
 
     private Date updateTime;

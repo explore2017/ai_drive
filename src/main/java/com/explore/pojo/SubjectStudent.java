@@ -1,5 +1,7 @@
 package com.explore.pojo;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import java.util.Date;
 
 public class SubjectStudent {
@@ -19,6 +21,7 @@ public class SubjectStudent {
 
     private Float price;
 
+    @JsonFormat(timezone = "GMT+8", pattern = "yyyy-MM-dd")
     private Date startTime;
 
     private Date endTime;
